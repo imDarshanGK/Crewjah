@@ -6,12 +6,16 @@ Handles initializing and running the main program loop.
 """
 
 import logging
+from rich.logging import RichHandler
 from modules import summarize, tts, resource_fetcher, question_recommender, usage_guide
 
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
+    format="%(message)s",
+    datefmt="[%X]",
+    handlers=[RichHandler()]
 )
+logger = logging.getLogger("rich")
 
 def main():
     """
