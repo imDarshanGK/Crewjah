@@ -35,17 +35,18 @@ def ask_questions(subject):
     """
 
     subject = subject.strip().lower()
-    # Keep prompting until valid subject is entered
+
     while subject not in AVAILABLE_SUBJECTS:
-        logger.warning("⚠️  Invalid subject '%s'. " \
-        "Please choose from: %s", subject, ", ".join(AVAILABLE_SUBJECTS))
-        subject = input(f"Enter a valid subject ({'/'.join(AVAILABLE_SUBJECTS)}): ")
-        subject = subject.strip().lower()
+        logger.warning(
+            "⚠️  Invalid subject '%s'. Please choose from: %s",
+            subject, ", ".join(AVAILABLE_SUBJECTS)
+        )
+        subject = input(f"Enter a valid subject ({'/'.join(AVAILABLE_SUBJECTS)}): ").strip().lower()
 
     try:
         with open(f"data/questions/{subject}.json", encoding="utf-8") as file:
             questions = json.load(file)
-            logger.info("✅ Loaded questions for subject: %s", subject)
+            logger.info("📥 Loaded questions for subject: %s", subject)
     except FileNotFoundError:
         logger.error("❌ Subject '%s' not found. Quiz aborted.", subject)
         return
@@ -56,20 +57,30 @@ def ask_questions(subject):
     random.shuffle(questions)
     score = 0
 
-    for q in questions[:5]:
-        logger.info("❓ Question: %s", q["question"])
-        for i, option in enumerate(q["options"], 1):
-            logger.info("   %d. %s", i, option)
+    logger.info("\n🎯 Starting quiz! Answer the next 5 questions:\n")
 
-        answer = input("Enter your choice (1-4): ")
+    for index, q in enumerate(questions[:5], 1):
+        logger.info("🧠 [Question %d] %s", index, q["question"])
+        for i, option in enumerate(q["options"], 1):
+            logger.info("   %d) %s", i, option)
+
+        answer = input("➡️  Enter your choice (1-4): ")
         try:
             selected = int(answer)
             if q["options"][selected - 1] == q["answer"]:
-                logger.info("✅ Correct!")
+                logger.info("✅ Correct!\n")
                 score += 1
             else:
-                logger.info("❌ Incorrect. Correct answer: %s", q["answer"])
+                logger.info("❌ Incorrect! The correct answer was: %s\n", q["answer"])
         except (ValueError, IndexError):
-            logger.warning("⚠️ Invalid input: '%s'. Skipping question.", answer)
+            logger.warning("⚠️  Invalid input: '%s'. Skipping question.\n", answer)
 
-    logger.info("📊 Quiz finished. Score: %d/5", score)
+    logger.info("🏁 Quiz completed!")
+    logger.info("📊 Your score: %d/5", score)
+
+    if score == 5:
+        logger.info("🎉 Excellent! You're a quiz master!")
+    elif score >= 3:
+        logger.info("👍 Good job! Keep practicing.")
+    else:
+        logger.info("📚 Review the topic and try again.")
