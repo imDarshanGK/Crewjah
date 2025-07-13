@@ -6,16 +6,15 @@ Handles initializing and running the main program loop.
 """
 
 import logging
+import sys
 from rich.logging import RichHandler
 from modules import summarize, tts, resource_fetcher, question_recommender, usage_guide
 
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(message)s",
-    datefmt="[%X]",
-    handlers=[RichHandler()]
+    level=logging.INFO, format="%(message)s", datefmt="[%X]", handlers=[RichHandler()]
 )
 logger = logging.getLogger("rich")
+
 
 def main():
     """
@@ -54,13 +53,14 @@ def main():
 
     elif choice == "5":
         logging.info("👋 Goodbye!")
-        exit()
+        sys.exit()
 
     elif choice == "6":
         usage_guide.show_help()
 
     else:
         logging.error("❌ Invalid choice. Exiting.")
+
 
 if __name__ == "__main__":
     main()
