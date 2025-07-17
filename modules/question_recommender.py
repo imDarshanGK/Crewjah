@@ -11,6 +11,8 @@ provides feedback and scoring in real time.
 import json
 import random
 import logging
+from config import ENABLE_SOUND
+from modules import sound
 
 logger = logging.getLogger(__name__)
 
@@ -84,3 +86,9 @@ def ask_questions(subject):
         logger.info("👍 Good job! Keep practicing.")
     else:
         logger.info("📚 Review the topic and try again.")
+
+    if ENABLE_SOUND:
+        if score >= 3:
+            sound.play_success_sound()
+        else:
+            sound.play_failure_sound()
