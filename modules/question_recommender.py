@@ -23,11 +23,15 @@ def ask_questions(subject):
     """
     Displays a multiple-choice quiz to the user based on the given subject.
 
-    The function attempts to load a list of questions from a JSON file located
-    at 'data/questions/{subject}.json' using UTF-8 encoding. If the file is found,
-    it selects the first 5 questions after shuffling and presents them one by one
-    to the user. The user inputs their answer, and the function provides feedback
-    and tracks the score.
+    This function loads a list of questions from a JSON file located at
+    'data/questions/{subject}.json' using UTF-8 encoding. If the file is valid,
+    it shuffles and selects the first 5 questions, presenting them to the user
+    one by one. The user selects answers via input, and the function provides
+    immediate feedback and tracks the total score.
+
+    If sound notifications are enabled via the ENABLE_SOUND flag in config.py,
+    the function plays an audio cue at the end of the quiz to indicate success
+    (for scores >= 3) or failure (for scores < 3), using the winsound module on Windows.
 
     Parameters:
         subject (str): The name of the subject whose questions will be loaded.
