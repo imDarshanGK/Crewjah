@@ -20,6 +20,19 @@ logger = logging.getLogger(__name__)
 AVAILABLE_SUBJECTS = ["python", "dsa"]
 
 def normalize_subject(subject):
+    """
+    Normalizes and validates the subject name input by the user.
+
+    If the subject is not in the AVAILABLE_SUBJECTS list, prompts the user
+    repeatedly until a valid one is entered.
+
+    Parameters:
+        subject (str): The initial user-provided subject name.
+
+    Returns:
+        str: A valid, lowercase subject name present in AVAILABLE_SUBJECTS.
+    """
+
     subject = subject.strip().lower()
 
     while subject not in AVAILABLE_SUBJECTS:
@@ -31,6 +44,16 @@ def normalize_subject(subject):
 
 
 def load_questions(subject):
+    """
+    Loads and parses a JSON file containing multiple-choice questions.
+
+    Parameters:
+        subject (str): The subject name, used to locate the corresponding JSON file.
+
+    Returns:
+        list[dict] | None: A list of questions if successfully loaded and parsed,
+                           otherwise None.
+    """
     try:
         with open(f"data/questions/{subject}.json", encoding="utf-8") as file:
             questions = json.load(file)
@@ -44,6 +67,19 @@ def load_questions(subject):
 
 
 def run_quiz(questions):
+    """
+    Presents multiple-choice questions to the user and tracks their score.
+
+    Loops through the given list of questions, shows them one by one,
+    and evaluates user responses.
+
+    Parameters:
+        questions (list[dict]): A list of 5 multiple-choice question dictionaries.
+
+    Returns:
+        int: The total number of correct answers (score out of 5).
+    """
+
     score = 0
     logger.info("\n🎯 Starting quiz! Answer the next 5 questions:\n")
 
@@ -63,6 +99,17 @@ def run_quiz(questions):
 
 
 def is_correct_answer(answer, question):
+    """
+    Validates the user's input and checks if the selected answer is correct.
+
+    Parameters:
+        answer (str): The user's input, expected to be a number between 1 and 4.
+        question (dict): The question dictionary containing options and correct answer.
+
+    Returns:
+        bool: True if the answer is correct, False otherwise or if input is invalid.
+    """
+
     try:
         selected = int(answer)
         return question["options"][selected - 1] == question["answer"]
@@ -72,6 +119,16 @@ def is_correct_answer(answer, question):
 
 
 def give_feedback(score):
+    """
+    Logs performance-based feedback and plays audio cues if enabled.
+
+    Parameters:
+        score (int): The user's quiz score (from 0 to 5).
+
+    Returns:
+        None
+    """
+
     logger.info("🏁 Quiz completed!")
     logger.info("📊 Your score: %d/5", score)
 
@@ -90,6 +147,20 @@ def give_feedback(score):
 
 
 def ask_questions(subject):
+    """
+    Orchestrates the quiz flow for the given subject.
+
+    This function normalizes the subject, loads the corresponding question file,
+    runs the quiz with the first 5 shuffled questions, and provides feedback and
+    audio cues (if enabled via config).
+
+    Parameters:
+        subject (str): The name of the subject to load questions from.
+
+    Returns:
+        None
+    """
+
     subject = normalize_subject(subject)
 
     if subject is None:
