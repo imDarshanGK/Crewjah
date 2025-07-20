@@ -33,38 +33,35 @@ def main():
 
     while choice not in {"1", "2", "3", "4", "5", "6"}:
         logging.warning("❌ Invalid choice. Please select an option between 1 and 6.")
-        choice = input("Choose an option (1–6): ")
+        choice = input("Choose an option (1-6): ")
 
-    if choice == "1":
-        topic = input("Enter topic: ")
-        summary = summarize.generate_summary(topic)
-        logging.info("\n🔎 Summary:\n%s", summary)
+    match choice:
+        case "1":
+            topic = input("Enter topic: ")
+            summary = summarize.generate_summary(topic)
+            logging.info("\n🔎 Summary:\n%s", summary)
 
-    elif choice == "2":
-        topic = input("Enter topic: ")
-        links = resource_fetcher.fetch_resources(topic)
-        logging.info("\n📚 Study Resources:")
-        for link in links:
-            logging.info("%s", link)
+        case "2":
+            topic = input("Enter topic: ")
+            links = resource_fetcher.fetch_resources(topic)
+            logging.info("\n📚 Study Resources:")
+            for link in links:
+                logging.info("%s", link)
 
-    elif choice == "3":
-        subject = input("Enter subject (python/dsa): ").lower()
-        question_recommender.ask_questions(subject)
+        case "3":
+            subject = input("Enter subject (python/dsa): ").lower()
+            question_recommender.ask_questions(subject)
 
-    elif choice == "4":
-        text = input("Enter what you want to hear: ")
-        tts.speak(text)
+        case "4":
+            text = input("Enter what you want to hear: ")
+            tts.speak(text)
 
-    elif choice == "5":
-        usage_guide.show_help()
+        case "5":
+            usage_guide.show_help()
 
-    elif choice == "6":
-        logging.info("👋 Goodbye!")
-        sys.exit()
-
-    else:
-        logging.error("❌ Invalid choice. Exiting.")
-
+        case "6":
+            logging.info("👋 Goodbye!")
+            sys.exit()
 
 if __name__ == "__main__":
     main()
