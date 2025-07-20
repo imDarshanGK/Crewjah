@@ -31,6 +31,10 @@ def main():
 
     choice = input("Choose an option (1-6): ")
 
+    while choice not in {"1", "2", "3", "4", "5", "6"}:
+        logging.warning("❌ Invalid choice. Please select an option between 1 and 6.")
+        choice = input("Choose an option (1–6): ")
+
     if choice == "1":
         topic = input("Enter topic: ")
         summary = summarize.generate_summary(topic)
