@@ -26,8 +26,8 @@ def main():
     logging.info("2. Get study resources")
     logging.info("3. Practice questions")
     logging.info("4. Hear a response")
-    logging.info("5. Exit")
-    logging.info("6. Help!")
+    logging.info("5. Help!")
+    logging.info("6. Exit")
 
     choice = input("Choose an option (1-6): ")
 
@@ -52,11 +52,11 @@ def main():
         tts.speak(text)
 
     elif choice == "5":
-        logging.info("👋 Goodbye!")
-        sys.exit()
+        usage_guide.show_help()
 
     elif choice == "6":
-        usage_guide.show_help()
+        logging.info("👋 Goodbye!")
+        sys.exit()
 
     else:
         logging.error("❌ Invalid choice. Exiting.")
