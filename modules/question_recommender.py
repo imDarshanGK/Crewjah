@@ -163,18 +163,18 @@ def return_score_history_list():
 
     try:
         file_location = './data/score_history.json'
-        with open(file_location) as score_history_file:
+        with open(file_location, encoding="utf-8") as score_history_file:
             data = json.load(score_history_file)
         return data
     except json.JSONDecodeError as e:
-        logger.error(f"Error while opening json file. Error message: '{e}'")
+        logger.error("Error while opening json file. Error message: '%s'", e)
         logger.info(
-            f"Make sure the file at '{file_location}' points to a valid json file.")
+            "Make sure the file at '%s' points to a valid json file.", file_location)
         return []
     except FileNotFoundError as e:
-        logger.error(f"File not found. Error message: '{e}'")
+        logger.error("File not found. Error message: '%s'", e)
         logger.info(
-            f"Make sure '{file_location}' points to a valid location and 'score_history.json' file exists.")
+            "Make sure 'score_history.json' file exists.")
         return []
 
 
@@ -194,14 +194,14 @@ def format_and_show_score_history():
         logger.info("No quizes done yet!")
         return
     for completed_quiz in data:
-        logger.info(f"Subject: {completed_quiz["subject"]}")
-        logger.info(f"Score: {completed_quiz["score"]}")
-        logger.info(f"Date of completion: {completed_quiz["date"]}\n")
+        logger.info("Subject: {%s['subject']}", completed_quiz)
+        logger.info("Score: {%s['score']}", completed_quiz)
+        logger.info("Date of completion: {%s['date']}\n", completed_quiz)
 
 
 def store_score(subject, score):
     """
-    Used to store completed quiz information. Adds a dict with subject, score and date to 'score_history.json'. 
+    Used to store completed quiz information. Stores a dict with subject, score and date. 
 
     Parameters:
         subject (str): The subject name.
@@ -217,7 +217,7 @@ def store_score(subject, score):
                 "date": str(date_of_test_completion)}
     data.append(new_data)
 
-    with open('./data/score_history.json', 'w') as f:
+    with open('./data/score_history.json', 'w', encoding="utf-8") as f:
         json.dump(data, f, indent=3)
 
 
