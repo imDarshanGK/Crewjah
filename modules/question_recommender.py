@@ -10,6 +10,7 @@ provides feedback and scoring in real time.
 
 import json
 import random
+import datetime
 import logging
 from config import ENABLE_SOUND
 from modules import sound
@@ -18,6 +19,7 @@ logger = logging.getLogger(__name__)
 
 # List of available subjects
 AVAILABLE_SUBJECTS = ["python", "dsa"]
+
 
 def normalize_subject(subject):
     """
@@ -38,7 +40,8 @@ def normalize_subject(subject):
     while subject not in AVAILABLE_SUBJECTS:
         logger.warning("⚠️  Invalid subject '%s'. Please choose from: %s",
                        subject, ", ".join(AVAILABLE_SUBJECTS))
-        subject = input(f"Enter a valid subject ({'/'.join(AVAILABLE_SUBJECTS)}): ").strip().lower()
+        subject = input(
+            f"Enter a valid subject ({'/'.join(AVAILABLE_SUBJECTS)}): ").strip().lower()
 
     return subject
 
@@ -93,7 +96,8 @@ def run_quiz(questions):
             logger.info("✅ Correct!\n")
             score += 1
         else:
-            logger.info("❌ Incorrect! The correct answer was: %s\n", q["answer"])
+            logger.info(
+                "❌ Incorrect! The correct answer was: %s\n", q["answer"])
 
     return score
 
@@ -146,6 +150,77 @@ def give_feedback(score):
             sound.play_failure_sound()
 
 
+def return_score_history_list():
+    """
+    Loads and parses 'score_history.json'. 
+
+    Parameters: 
+        None
+
+    Returns:
+        quiz history (list[dict]): each dict contains quiz subject, score and date.
+    """
+
+    try:
+        file_location = './data/score_history.json'
+        with open(file_location, encoding="utf-8") as score_history_file:
+            data = json.load(score_history_file)
+        return data
+    except json.JSONDecodeError as e:
+        logger.error("Error while opening json file. Error message: '%s'", e)
+        logger.info(
+            "Make sure the file at '%s' points to a valid json file.", file_location)
+        return []
+    except FileNotFoundError as e:
+        logger.error("File not found. Error message: '%s'", e)
+        logger.info(
+            "Make sure 'score_history.json' file exists.")
+        return []
+
+
+def format_and_show_score_history():
+    """
+    Displays all quiz history data with logger. 
+
+    Parameters: 
+        None
+
+    Returns:
+        None
+    """
+
+    data = return_score_history_list()
+    if not data:
+        logger.info("No quizes done yet!")
+        return
+    for completed_quiz in data:
+        logger.info("Subject: {%s['subject']}", completed_quiz)
+        logger.info("Score: {%s['score']}", completed_quiz)
+        logger.info("Date of completion: {%s['date']}\n", completed_quiz)
+
+
+def store_score(subject, score):
+    """
+    Used to store completed quiz information. Stores a dict with subject, score and date. 
+
+    Parameters:
+        subject (str): The subject name.
+        score (int): The user's quiz score. 
+
+    Returns:
+        None
+    """
+
+    data = return_score_history_list()
+    date_of_test_completion = datetime.datetime.now()
+    new_data = {"subject": subject, "score": score,
+                "date": str(date_of_test_completion)}
+    data.append(new_data)
+
+    with open('./data/score_history.json', 'w', encoding="utf-8") as f:
+        json.dump(data, f, indent=3)
+
+
 def ask_questions(subject):
     """
     Orchestrates the quiz flow for the given subject.
@@ -172,4 +247,5 @@ def ask_questions(subject):
 
     random.shuffle(questions)
     score = run_quiz(questions[:5])
+    store_score(subject, score)
     give_feedback(score)
