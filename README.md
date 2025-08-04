@@ -1,23 +1,4 @@
----
 
-## Deployment
-
-You can deploy the Streamlit web app version of SmartStudyBot to platforms like [Render](https://render.com/) or [Railway](https://railway.app/).
-
-### Deploy to Render
-
-1. Push your code to GitHub.
-2. Go to [Render.com](https://render.com/) and create a new Web Service.
-3. Connect your GitHub repo and select this project.
-4. Set the start command to:
-   ```bash
-   python -m streamlit run app.py --server.port $PORT
-   ```
-5. Click 'Create Web Service'.
-
-Your app will be live and accessible via a public URL!
-
----
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/imDarshanGK/SmartStudyBot/main/assets/banner.png" alt="SmartStudyBot Banner" width="100%" height="300px">
@@ -82,6 +63,26 @@ python main.py
 ```bash
 python -m streamlit run app.py --server.port 8501
 ```
+
+---
+
+## Deployment
+
+You can deploy the Streamlit web app version of SmartStudyBot to platforms like [Render](https://render.com/) or [Railway](https://railway.app/).
+
+### Deploy to Render
+
+1. Push your code to GitHub.
+2. Go to [Render.com](https://render.com/) and create a new Web Service.
+3. Connect your GitHub repo and select this project.
+4. Set the start command to:
+   ```bash
+   python -m streamlit run app.py --server.port $PORT
+   ```
+5. Click 'Create Web Service'.
+
+Your app will be live and accessible via a public URL!
+
 
 ---
 
@@ -155,5 +156,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Looking for Contributors
 
-We welcome beginner-friendly contributions!  
-🌟 Star the repo and check the [issues](https://github.com/imDarshanGK/SmartStudyBot/issues) to get started.
+We welcome beginner-friendly contributions!
+
+⭐ Star the repo and check the [issues](https://github.com/imDarshanGK/SmartStudyBot/issues) to get started.
