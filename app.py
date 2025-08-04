@@ -3,7 +3,7 @@ from modules import summarize, resource_fetcher, question_recommender
 import json
 import os
 
-st.set_page_config(page_title="SmartStudyBot", page_icon="📚")
+st.set_page_config(page_title="SmartStudyBot")
 st.title("SmartStudyBot")
 st.write("Your AI-powered study assistant!")
 

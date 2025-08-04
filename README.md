@@ -1,13 +1,34 @@
+---
+
+## Deployment
+
+You can deploy the Streamlit web app version of SmartStudyBot to platforms like [Render](https://render.com/) or [Railway](https://railway.app/).
+
+### Deploy to Render
+
+1. Push your code to GitHub.
+2. Go to [Render.com](https://render.com/) and create a new Web Service.
+3. Connect your GitHub repo and select this project.
+4. Set the start command to:
+   ```bash
+   python -m streamlit run app.py --server.port $PORT
+   ```
+5. Click 'Create Web Service'.
+
+Your app will be live and accessible via a public URL!
+
+---
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/imDarshanGK/SmartStudyBot/main/assets/banner.png" alt="SmartStudyBot Banner" width="100%" height="300px">
 </p>
-
 
 <p align="center">
   <img src="https://img.shields.io/badge/SmartStudyBot-AI--Powered-blue?style=for-the-badge&logo=python&logoColor=white" alt="SmartStudyBot Logo">
 </p>
 
-<h1 align="center">🤖 SmartStudyBot</h1>
+
+<h1 align="center">SmartStudyBot</h1>
 <p align="center">Your AI-powered personalized study companion built using Python, NLP, and speech tools.</p>
 
 <p align="center">
@@ -18,7 +39,7 @@
 
 ---
 
-## 🧠 Features
+## Features
 
 -  Summarize any topic using NLP techniques
 -  Get real-time study resource links
@@ -28,7 +49,7 @@
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - Python 3.10+
 - [sumy](https://pypi.org/project/sumy/) – for summarization
@@ -39,7 +60,8 @@
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
+
 
 Clone this repository and install dependencies:
 
@@ -49,12 +71,21 @@ cd SmartStudyBot
 python -m venv venv
 source venv/bin/activate    # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
+```
+
+### To run the CLI app:
+```bash
 python main.py
+```
+
+### To run the Streamlit web app:
+```bash
+python -m streamlit run app.py --server.port 8501
 ```
 
 ---
 
-## 🧾 Project Structure
+## Project Structure
 
 ```
 SmartStudyBot/
@@ -78,7 +109,7 @@ SmartStudyBot/
 
 ---
 
-## 🎮 Features in Action
+## Features in Action
 
 -  Select a study action via menu
 -  Automatically summarizes topics
@@ -88,7 +119,7 @@ SmartStudyBot/
 
 ---
 
-## 🧑‍💻 Contributing
+## Contributing
 
 We ❤️ contributions from the community!
 
@@ -109,20 +140,20 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for full guidelines.
 
 ---
 
-## 🐛 Issues
+## Issues
 
 Check out our [Issues tab](https://github.com/imDarshanGK/SmartStudyBot/issues)  
 Look for labels like `good first issue`, `enhancement`, or `documentation`.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 💬 Looking for Contributors
+## Looking for Contributors
 
 We welcome beginner-friendly contributions!  
 🌟 Star the repo and check the [issues](https://github.com/imDarshanGK/SmartStudyBot/issues) to get started.
