@@ -1,7 +1,7 @@
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/imDarshanGK/SmartStudyBot/main/assets/banner.png" alt="Learnova Banner" width="100%" height="300px">
+  <img src="https://raw.githubusercontent.com/imDarshanGK/Learnova/main/assets/banner.png" alt="Learnova Banner" width="100%" height="300px">
 </p>
 
 <p align="center">
@@ -13,7 +13,7 @@
 <p align="center">Your AI-powered personalized study companion built using Python, NLP, and speech tools.</p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/contributors/imDarshanGK/SmartStudyBot" alt="GitHub contributors">
+  <img src="https://img.shields.io/github/contributors/imDarshanGK/Learnova" alt="GitHub contributors">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome">
 </p>
 
@@ -47,8 +47,8 @@
 Clone this repository and install dependencies:
 
 ```bash
-git clone https://github.com/imDarshanGK/SmartStudyBot.git
-cd SmartStudyBot
+git clone https://github.com/imDarshanGK/Learnova.git
+cd Learnova
 python -m venv venv
 source venv/bin/activate    # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
