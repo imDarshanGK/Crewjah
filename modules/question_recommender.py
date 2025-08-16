@@ -1,13 +1,12 @@
 """
 question_recommender.py
 
-This module handles the interactive quiz functionality of the SmartStudyBot.
+This module handles the interactive quiz functionality of Learnova.
 
 It loads multiple-choice questions from a subject-specific JSON file and presents
 them to the user in a shuffled order. The user inputs their answers, and the system
 provides feedback and scoring in real time.
 """
-
 import json
 import random
 import datetime
