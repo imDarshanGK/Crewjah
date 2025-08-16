@@ -1,6 +1,6 @@
-# 🧑‍💻 Contributing to Learnova
+# 🧑‍💻 Contributing to SmartStudyBot
 
-Thank you for considering contributing to **Learnova**! 🙌  
+Thank you for considering contributing to **SmartStudyBot**! 🙌  
 We welcome beginner-friendly contributions, bug fixes, new features, and documentation improvements.
 
 ---
@@ -9,8 +9,8 @@ We welcome beginner-friendly contributions, bug fixes, new features, and documen
 
 ### 1. 🔧 Fork and Clone the Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/Learnova.git
-cd Learnova
+git clone https://github.com/YOUR_USERNAME/SmartStudyBot.git
+cd SmartStudyBot
 ```
 
 ### 2. 🌱 Create a New Branch
