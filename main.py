@@ -1,7 +1,7 @@
 """
 main.py
 
-Main entry point for SmartStudyBot application.
+Main entry point for Learnova application.
 Handles initializing and running the main program loop.
 """
 
@@ -18,10 +18,10 @@ logger = logging.getLogger("rich")
 
 def main():
     """
-    Main function to start the SmartStudyBot application.
+    Main function to start the Learnova application.
     """
 
-    logging.info("🤖 Welcome to SmartStudyBot!")
+    logging.info("🤖 Welcome to Learnova!")
     logging.info("1. Summarize a topic")
     logging.info("2. Get study resources")
     logging.info("3. Practice questions")
