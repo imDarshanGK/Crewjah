@@ -1,12 +1,12 @@
 """
-Learnova - Modern UI
+SmartStudyBot - Modern UI
 """
 import streamlit as st
 from modules import summarize, resource_fetcher, question_recommender
 import json
 import os
 
-st.set_page_config(page_title="Learnova", layout="centered")
+st.set_page_config(page_title="SmartStudyBot", layout="centered")
 
 
 # Enhanced CSS for a modern, education-inspired homepage and sidebar
