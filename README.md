@@ -1,15 +1,15 @@
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/imDarshanGK/SmartStudyBot/main/assets/banner.png" alt="SmartStudyBot Banner" width="100%" height="300px">
+  <img src="https://raw.githubusercontent.com/imDarshanGK/SmartStudyBot/main/assets/banner.png" alt="Learnova Banner" width="100%" height="300px">
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/SmartStudyBot-AI--Powered-blue?style=for-the-badge&logo=python&logoColor=white" alt="SmartStudyBot Logo">
+  <img src="https://img.shields.io/badge/Learnova-AI--Powered-blue?style=for-the-badge&logo=python&logoColor=white" alt="Learnova Logo">
 </p>
 
 
-<h1 align="center">SmartStudyBot</h1>
+<h1 align="center">Learnova</h1>
 <p align="center">Your AI-powered personalized study companion built using Python, NLP, and speech tools.</p>
 
 <p align="center">
@@ -68,7 +68,7 @@ python -m streamlit run app.py --server.port 8501
 
 ## Deployment
 
-You can deploy the Streamlit web app version of SmartStudyBot to platforms like [Render](https://render.com/) or [Railway](https://railway.app/).
+You can deploy the Streamlit web app version of Learnova to platforms like [Render](https://render.com/) or [Railway](https://railway.app/).
 
 ### Deploy to Render
 
@@ -89,7 +89,7 @@ Your app will be live and accessible via a public URL!
 ## Project Structure
 
 ```
-SmartStudyBot/
+Learnova/
 ├── main.py
 ├── config.py
 ├── requirements.txt
@@ -103,9 +103,9 @@ SmartStudyBot/
 │       ├── python.json
 │       └── dsa.json
 └── .github/
-    ├── CONTRIBUTING.md
-    ├── ISSUE_TEMPLATE.md
-    └── PULL_REQUEST_TEMPLATE.md
+  ├── CONTRIBUTING.md
+  ├── ISSUE_TEMPLATE.md
+  └── PULL_REQUEST_TEMPLATE.md
 ```
 
 ---
@@ -143,7 +143,7 @@ See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for full guidelines.
 
 ## Issues
 
-Check out our [Issues tab](https://github.com/imDarshanGK/SmartStudyBot/issues)  
+Check out our [Issues tab](https://github.com/imDarshanGK/Learnova/issues)  
 Look for labels like `good first issue`, `enhancement`, or `documentation`.
 
 ---
@@ -158,4 +158,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 We welcome beginner-friendly contributions!
 
-⭐ Star the repo and check the [issues](https://github.com/imDarshanGK/SmartStudyBot/issues) to get started.
+⭐ Star the repo and check the [issues](https://github.com/imDarshanGK/Learnova/issues) to get started.
