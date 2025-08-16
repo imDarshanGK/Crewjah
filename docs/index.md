@@ -1,1 +1,1 @@
-# SmartStudyBot Documentation
+# Learnova Documentation
