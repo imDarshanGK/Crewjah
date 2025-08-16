@@ -1,6 +1,6 @@
 # 📦 Pull Request Template
 
-Thank you for your contribution to **SmartStudyBot**! 🙌  
+Thank you for your contribution to **Learnova**! 🙌  
 Please fill out the following details to help us review your pull request.
 
 ---
