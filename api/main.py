@@ -7,7 +7,7 @@ from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
 from db import SessionLocal
-from models import Base
+from models import Base, FlashcardDeck, Flashcard
 from sqlalchemy import create_engine
 
 app = FastAPI()
@@ -138,3 +138,55 @@ def update_preferences(preferences: dict = Body(...), token: str = Depends(oauth
     # For demo: update in-memory store
     users_db[email]["preferences"] = preferences
     return {"msg": "Preferences updated", "preferences": preferences}
+
+# Flashcard decks and cards endpoints
+class DeckCreate(BaseModel):
+    title: str
+    subject: Optional[str] = None
+
+class CardCreate(BaseModel):
+    deck_id: int
+    front: str
+    back: str
+
+class CardReview(BaseModel):
+    card_id: int
+    correct: bool
+
+@app.post("/flashcards/decks")
+def create_deck(deck: DeckCreate, db: Session = Depends(get_db)):
+    db_deck = FlashcardDeck(title=deck.title, subject=deck.subject, user_id=1)  # TODO: use real user_id
+    db.add(db_deck)
+    db.commit()
+    db.refresh(db_deck)
+    return {"id": db_deck.id, "title": db_deck.title, "subject": db_deck.subject}
+
+@app.post("/flashcards/cards")
+def add_card(card: CardCreate, db: Session = Depends(get_db)):
+    db_card = Flashcard(deck_id=card.deck_id, front=card.front, back=card.back, ease_factor=2.5, interval=1, due_date=datetime.utcnow())
+    db.add(db_card)
+    db.commit()
+    db.refresh(db_card)
+    return {"id": db_card.id, "front": db_card.front, "back": db_card.back}
+
+@app.get("/flashcards/decks/{deck_id}/due-cards")
+def get_due_cards(deck_id: int, db: Session = Depends(get_db)):
+    now = datetime.utcnow()
+    cards = db.query(Flashcard).filter(Flashcard.deck_id == deck_id, Flashcard.due_date <= now).all()
+    return [{"id": c.id, "front": c.front, "back": c.back, "due_date": c.due_date} for c in cards]
+
+@app.post("/flashcards/review")
+def review_card(review: CardReview, db: Session = Depends(get_db)):
+    card = db.query(Flashcard).filter(Flashcard.id == review.card_id).first()
+    if not card:
+        raise HTTPException(status_code=404, detail="Card not found")
+    # Simple SM-2 spaced repetition update
+    if review.correct:
+        card.ease_factor = max(1.3, card.ease_factor + 0.1)
+        card.interval = int(card.interval * card.ease_factor)
+    else:
+        card.ease_factor = max(1.3, card.ease_factor - 0.2)
+        card.interval = 1
+    card.due_date = datetime.utcnow() + timedelta(days=card.interval)
+    db.commit()
+    return {"msg": "Card reviewed", "next_due": card.due_date}
