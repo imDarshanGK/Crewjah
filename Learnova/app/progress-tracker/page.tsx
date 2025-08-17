@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 
 const subjects = ["All", "Python", "DSA", "Math", "General"];
