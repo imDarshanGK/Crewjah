@@ -7,7 +7,9 @@ extract the most relevant sentences from a given input text.
 Useful for condensing long pieces of text into a few key points.
 """
 
+
 import logging
+import nltk
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
@@ -36,7 +38,11 @@ def generate_summary(text, sentence_count=3):
     query = text.strip().lower()
     # Q&A for common study topics
     if "dsa" in query or "data structures and algorithms" in query:
-        return "DSA stands for Data Structures and Algorithms. Data structures are ways to organize and store data (like arrays, lists, stacks, queues, trees, and graphs). Algorithms are step-by-step procedures or formulas for solving problems. Mastering DSA is essential for efficient programming and technical interviews."
+        return (
+            "DSA stands for Data Structures and Algorithms. Data structures are ways to organize and store data "
+            "(like arrays, lists, stacks, queues, trees, and graphs). Algorithms are step-by-step procedures or "
+            "formulas for solving problems. Mastering DSA is essential for efficient programming and technical interviews."
+        )
     if "difference between python lists and tuples" in query:
         return (
             "Python lists are mutable, meaning you can change, add, or remove elements after creation. "
@@ -71,11 +77,20 @@ def generate_summary(text, sentence_count=3):
     if "queue" in query and ("dsa" in query or "data structure" in query):
         return "A queue is a linear data structure that follows the First In First Out (FIFO) principle. Elements are added at the rear and removed from the front. Common operations: enqueue, dequeue."
     if "tree" in query and ("dsa" in query or "data structure" in query):
-        return "A tree is a hierarchical data structure with nodes connected by edges. The top node is called the root. Common types: binary tree, BST, AVL tree."
+        return (
+            "A tree is a hierarchical data structure with nodes connected by edges. The top node is called the root. "
+            "Common types: binary tree, BST, AVL tree."
+        )
     if "graph" in query and ("dsa" in query or "data structure" in query):
-        return "A graph is a collection of nodes (vertices) and edges connecting them. Used to represent networks, relationships, and paths."
+        return (
+            "A graph is a collection of nodes (vertices) and edges connecting them. Used to represent networks, "
+            "relationships, and paths."
+        )
     if "algorithm" in query:
-        return "An algorithm is a step-by-step procedure to solve a problem. Examples: searching, sorting, recursion, dynamic programming."
+        return (
+            "An algorithm is a step-by-step procedure to solve a problem. Examples: searching, sorting, recursion, "
+            "dynamic programming."
+        )
     if "code" in query:
         return "Please provide a specific code snippet or a detailed question for a meaningful summary."
     if "explain" in query:
@@ -86,7 +101,6 @@ def generate_summary(text, sentence_count=3):
 
     try:
         # Ensure NLTK 'punkt' and 'punkt_tab' are available
-        import nltk
         try:
             nltk.data.find('tokenizers/punkt')
         except LookupError:
