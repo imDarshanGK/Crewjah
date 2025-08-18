@@ -1,6 +1,7 @@
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/imDarshanGK/Learnova/main/assets/learnova-logo.png" alt="Learnova Logo" width="180" height="180">
+  <img src="https://raw.githubusercontent.com/imDarshanGK/Learnova/main
+  /assets/learnova-logo.png" alt="Learnova Logo" width="180" height="180">
 </p>
 
 <p align="center">
