@@ -46,8 +46,9 @@ def generate_summary(text, sentence_count=3):
         return (
             "Python lists are mutable, meaning you can change, add, or remove elements after creation. "
             "They use square brackets: [1, 2, 3]. Tuples are immutable, so their contents cannot be "
-            "changed after creation, and they use parentheses: (1, 2, 3). Lists are generally used "
-            "for collections of items that may change, while tuples are used for fixed collections."
+            "changed after creation, and they use parentheses: (1, 2, 3). "
+            "Lists are generally used for collections of items that may change, "
+            "while tuples are used for fixed collections."
         )
     if "list" in query and "python" in query:
         return (
