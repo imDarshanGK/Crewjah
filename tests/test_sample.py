@@ -1,2 +1,2 @@
 def test_sample():
-    pass
+    assert 2 + 2 == 4
