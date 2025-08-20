@@ -41,12 +41,12 @@ export default function Header() {
     >
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
         <img
-          src="/learnova-logo.png"
-          alt="Learnova Logo"
+          src="/crewjah-logo.jpg"
+          alt="Crewjah Logo"
           style={{ width: 36, height: 36, borderRadius: 8, background: darkMode ? "#232946" : "#e0e7ff", boxShadow: darkMode ? "0 2px 8px #232946" : "0 2px 8px #b3bcf6" }}
           onError={e => (e.currentTarget.style.display = "none")}
         />
-        <span style={{ fontWeight: 700, fontSize: "1.22em", color: darkMode ? "#a5b4fc" : "#4f46e5", letterSpacing: 1 }}>Learnova</span>
+        <span style={{ fontWeight: 700, fontSize: "1.22em", color: darkMode ? "#a5b4fc" : "#4f46e5", letterSpacing: 1 }}>Crewjah</span>
       </div>
       <nav style={{ display: "flex", alignItems: "center", gap: 24 }}>
         <a href="/dashboard" style={{ color: darkMode ? "#e0e7ff" : "#232946", fontWeight: 600, textDecoration: "none" }}>Dashboard</a>
