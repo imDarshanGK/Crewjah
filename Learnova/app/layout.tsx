@@ -53,7 +53,6 @@ export default function RootLayout({
           Skip to content
         </a>
         <AccessibilityClientProvider>
-          <Header />
           <div id="main-content" style={{ flex: 1 }}>
             {children}
           </div>
