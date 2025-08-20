@@ -36,12 +36,18 @@ def generate_summary(text, sentence_count=3):
     query = text.strip().lower()
     # Q&A for common study topics
     if "dsa" in query or "data structures and algorithms" in query:
-        return "DSA stands for Data Structures and Algorithms. Data structures are ways to organize and store data (like arrays, lists, stacks, queues, trees, and graphs). Algorithms are step-by-step procedures or formulas for solving problems. Mastering DSA is essential for efficient programming and technical interviews."
+        return (
+            "DSA stands for Data Structures and Algorithms. Data structures are ways to organize "
+            "and store data (like arrays, lists, stacks, queues, trees, and graphs). Algorithms are "
+            "step-by-step procedures or formulas for solving problems. Mastering DSA is essential "
+            "for efficient programming and technical interviews."
+        )
     if "difference between python lists and tuples" in query:
         return (
             "Python lists are mutable, meaning you can change, add, or remove elements after creation. "
-            "They use square brackets: [1, 2, 3]. Tuples are immutable, so their contents cannot be changed after creation, "
-            "and they use parentheses: (1, 2, 3). Lists are generally used for collections of items that may change, while tuples are used for fixed collections."
+            "They use square brackets: [1, 2, 3]. Tuples are immutable, so their contents cannot be "
+            "changed after creation, and they use parentheses: (1, 2, 3). Lists are generally used for "
+            "collections of items that may change, while tuples are used for fixed collections."
         )
     if "list" in query and "python" in query:
         return (
@@ -50,8 +56,8 @@ def generate_summary(text, sentence_count=3):
         )
     if "tuple" in query and "python" in query:
         return (
-            "Python tuples are ordered, immutable collections. Once created, their elements cannot be changed. "
-            "Example: my_tuple = (1, 2, 3)"
+            "Python tuples are ordered, immutable collections. Once created, their elements cannot be "
+            "changed. Example: my_tuple = (1, 2, 3)"
         )
     if "dict" in query or "dictionary" in query:
         return (
@@ -59,30 +65,63 @@ def generate_summary(text, sentence_count=3):
             "Example: my_dict = {'a': 1, 'b': 2}"
         )
     if "set" in query and "python" in query:
-        return "A Python set is an unordered collection of unique elements. Example: my_set = {1, 2, 3}"
+        return (
+            "A Python set is an unordered collection of unique elements. "
+            "Example: my_set = {1, 2, 3}"
+        )
     if "function" in query and "python" in query:
-        return "A Python function is a reusable block of code defined with def. Example: def foo(): return 'bar'"
+        return (
+            "A Python function is a reusable block of code defined with def. "
+            "Example: def foo(): return 'bar'"
+        )
     if "class" in query and "python" in query:
-        return "A Python class is a blueprint for creating objects. Example: class MyClass: pass"
+        return (
+            "A Python class is a blueprint for creating objects. "
+            "Example: class MyClass: pass"
+        )
     if "loop" in query and "python" in query:
-        return "Python supports for and while loops for iteration. Example: for i in range(5): print(i)"
+        return (
+            "Python supports for and while loops for iteration. "
+            "Example: for i in range(5): print(i)"
+        )
     if "stack" in query and ("dsa" in query or "data structure" in query):
-        return "A stack is a linear data structure that follows the Last In First Out (LIFO) principle. You can only add or remove elements from the top. Common operations: push, pop, peek."
+        return (
+            "A stack is a linear data structure that follows the Last In First Out (LIFO) principle. "
+            "You can only add or remove elements from the top. Common operations: push, pop, peek."
+        )
     if "queue" in query and ("dsa" in query or "data structure" in query):
-        return "A queue is a linear data structure that follows the First In First Out (FIFO) principle. Elements are added at the rear and removed from the front. Common operations: enqueue, dequeue."
+        return (
+            "A queue is a linear data structure that follows the First In First Out (FIFO) principle. "
+            "Elements are added at the rear and removed from the front. Common operations: enqueue, dequeue."
+        )
     if "tree" in query and ("dsa" in query or "data structure" in query):
-        return "A tree is a hierarchical data structure with nodes connected by edges. The top node is called the root. Common types: binary tree, BST, AVL tree."
+        return (
+            "A tree is a hierarchical data structure with nodes connected by edges. "
+            "The top node is called the root. Common types: binary tree, BST, AVL tree."
+        )
     if "graph" in query and ("dsa" in query or "data structure" in query):
-        return "A graph is a collection of nodes (vertices) and edges connecting them. Used to represent networks, relationships, and paths."
+        return (
+            "A graph is a collection of nodes (vertices) and edges connecting them. "
+            "Used to represent networks, relationships, and paths."
+        )
     if "algorithm" in query:
-        return "An algorithm is a step-by-step procedure to solve a problem. Examples: searching, sorting, recursion, dynamic programming."
+        return (
+            "An algorithm is a step-by-step procedure to solve a problem. "
+            "Examples: searching, sorting, recursion, dynamic programming."
+        )
     if "code" in query:
-        return "Please provide a specific code snippet or a detailed question for a meaningful summary."
+        return (
+            "Please provide a specific code snippet or a detailed question for a meaningful summary."
+        )
     if "explain" in query:
-        return "Please provide more details or context for a meaningful explanation."
+        return (
+            "Please provide more details or context for a meaningful explanation."
+        )
     # Generic fallback for short input
     if len(text.strip().split()) < 8:
-        return "Please provide a more detailed question or text for a meaningful summary."
+        return (
+            "Please provide a more detailed question or text for a meaningful summary."
+        )
 
     try:
         # Ensure NLTK 'punkt' and 'punkt_tab' are available
@@ -107,7 +146,9 @@ def generate_summary(text, sentence_count=3):
         summary = summarizer(parser.document, sentence_count)
     except (ValueError, AttributeError, TypeError) as e:
         logger.error("❌ Error generating summary: %s", e)
-        return "An error occurred while generating the summary."
+        return (
+            "An error occurred while generating the summary."
+        )
 
     logger.info("✅ Summary generated successfully.")
     return " ".join(str(sentence) for sentence in summary)
