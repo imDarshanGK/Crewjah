@@ -1,6 +1,8 @@
 "use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 
 export default function SignUp() {
@@ -37,7 +39,7 @@ export default function SignUp() {
       <h1 style={{ textAlign: "center", color: "#4f46e5", fontWeight: 700 }}>Sign Up</h1>
       {success ? (
         <div style={{ color: "#16a34a", textAlign: "center", fontSize: "1.1em", margin: "2em 0" }}>
-          Account created! Redirecting to dashboard...
+          Account created! Please check your email to verify your account.<br />Redirecting to dashboard...
         </div>
       ) : (
         <form onSubmit={handleSignUp} style={{ display: "flex", flexDirection: "column", gap: 18, marginTop: 24 }}>
@@ -81,10 +83,21 @@ export default function SignUp() {
           {error && <div style={{ color: "#e11d48", fontSize: "0.98em", marginTop: -10 }}>{error}</div>}
           <button type="submit" style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.7em 0", fontSize: "1.08em", border: "none", cursor: "pointer" }}>Create account</button>
           <div style={{ textAlign: "center", fontSize: "0.98em" }}>
-            Already have an account? <a href="/signin" style={{ color: "#4f46e5" }}>Sign In</a>
+            Already have an account? <Link href="/signin" style={{ color: "#4f46e5" }}>Sign In</Link>
+          </div>
+          <div style={{ textAlign: "center", marginTop: 10 }}>
+            <span style={{ fontSize: "0.98em", color: "#6366f1" }}>By signing up, you agree to our </span>
+            <Link href="/terms" style={{ color: "#4f46e5", fontSize: "0.98em" }}>Terms</Link>
+            <span style={{ fontSize: "0.98em", color: "#6366f1" }}> & </span>
+            <Link href="/privacy" style={{ color: "#4f46e5", fontSize: "0.98em" }}>Privacy</Link>
+            <span style={{ fontSize: "0.98em", color: "#6366f1" }}>.</span>
           </div>
         </form>
       )}
-    </main>
-  );
+      <footer style={{ textAlign: "center", color: "#6366f1", fontSize: "0.98em", marginTop: 18 }}>
+        <Link href="/terms" style={{ color: "#4f46e5", margin: "0 1em" }}>Terms & Conditions</Link>
+        <Link href="/privacy" style={{ color: "#4f46e5", margin: "0 1em" }}>Privacy Policy</Link>
+      </footer>
+  </main>
+)
 }
