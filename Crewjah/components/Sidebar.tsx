@@ -2,18 +2,20 @@
 import React, { useState } from "react";
 
 const menu = [
-  "Homepage",
-  "Ask Anything (Q&A)",
+  "Dashboard",
+  "Ask Anything",
   "Summarize Text",
   "Summarize Code",
-  "Get Study Resources",
+  "Study Resources",
   "Take a Quiz",
   "Flashcards",
   "Daily Challenge",
-  "Progress Tracker",
   "Study Planner",
+  "Progress Tracker",
   "Download Notes",
-  "Accessibility Settings"
+  "Accessibility Settings",
+  "Profile & Settings",
+  "Help / Usage Guide"
 ];
 
 export default function Sidebar({ selected, onSelect }: { selected: string; onSelect: (item: string) => void }) {
@@ -43,8 +45,8 @@ export default function Sidebar({ selected, onSelect }: { selected: string; onSe
       gap: "1.5em"
     }}>
       <div style={{ display: "flex", alignItems: "center", fontWeight: 700, fontSize: "1.3em", marginBottom: "1em", letterSpacing: 1, gap: 10 }}>
-  <img src="/learnova-logo.png" alt="Learnova Logo" style={{ width: 38, height: 38, borderRadius: 8, background: "#fff" }} />
-  Learnova
+        <img src="/crewjah-logo.jpg" alt="Crewjah Logo" style={{ width: 38, height: 38, borderRadius: 8, background: "#fff" }} />
+        Crewjah
       </div>
       <div style={{ marginBottom: "1.5em" }}>
         {user ? (
