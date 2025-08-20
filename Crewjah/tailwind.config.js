@@ -10,3 +10,4 @@ module.exports = {
   },
   plugins: [],
 };
+// This file is no longer needed as it is duplicated in Crewjah-frontend and root tailwind.config.js
