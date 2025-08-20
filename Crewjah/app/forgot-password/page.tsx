@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -37,6 +38,10 @@ export default function ForgotPassword() {
           <button type="submit" style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.7em 0", fontSize: "1.08em", border: "none", cursor: "pointer" }}>Send reset link</button>
         </form>
       )}
+      <footer style={{ textAlign: "center", color: "#6366f1", fontSize: "0.98em", marginTop: 18 }}>
+        <Link href="/terms" style={{ color: "#4f46e5", margin: "0 1em" }}>Terms & Conditions</Link>
+        <Link href="/privacy" style={{ color: "#4f46e5", margin: "0 1em" }}>Privacy Policy</Link>
+      </footer>
     </main>
   );
 }
