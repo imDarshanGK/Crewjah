@@ -1,7 +1,9 @@
 
 "use client";
+
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function AuthPage() {
@@ -57,22 +59,19 @@ export default function AuthPage() {
   }
 
   return (
-    <main style={{ minHeight: "100vh", background: "linear-gradient(120deg, var(--accent) 0%, #f5f7fa 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-      {/* Friendly Opening */}
-      <div style={{ textAlign: "center", marginBottom: 24 }}>
-        <div style={{ fontSize: "1.15em", color: "#6366f1", fontWeight: 600, marginBottom: 10 }}>
-          Welcome! Sign in or create your free Learnova account below.
-        </div>
-        <Image src="/learnova-logo.png" alt="Learnova Logo" width={72} height={72} style={{ borderRadius: 16, margin: "0 auto 1em auto", boxShadow: "0 2px 12px #e0e7ff" }} />
-        <h1 style={{ fontWeight: 800, fontSize: "2em", color: "#4f46e5", marginBottom: 4 }}>Learnova</h1>
-        <div style={{ color: "#6366f1", fontWeight: 500, fontSize: "1.1em" }}>Learn Smarter with Learnova</div>
+    <main className="min-h-screen flex flex-col items-center justify-center bg-[#F9FAFB] px-2">
+      {/* Logo & Welcome */}
+      <div className="flex flex-col items-center mb-6">
+        <Image src="/crewjah-logo.jpg" alt="Crewjah Logo" width={72} height={72} className="rounded-2xl shadow-lg mb-3" />
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mb-1 tracking-tight">Crewjah</h1>
+        <div className="text-[#9333EA] font-semibold text-lg mb-2 animate-typing overflow-hidden whitespace-nowrap border-r-2 border-[#9333EA] pr-2">Welcome back to Crewjah – Your AI-powered learning companion.</div>
       </div>
 
-      <div style={{ background: "#fff", borderRadius: 16, boxShadow: "0 2px 16px #e0e7ff", padding: 32, minWidth: 340, maxWidth: 400, width: "100%", marginBottom: 18 }}>
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 md:p-10 mb-4 border border-[#E0E7FF]">
         {/* Toggle Sign In/Up */}
-        <div style={{ display: "flex", justifyContent: "center", gap: 18, marginBottom: 24 }}>
-          <button onClick={() => setIsSignIn(true)} style={{ background: isSignIn ? "#6366f1" : "#e0e7ff", color: isSignIn ? "#fff" : "#4f46e5", border: "none", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.5em", fontSize: "1.08em", cursor: "pointer", transition: "0.15s" }}>Sign In</button>
-          <button onClick={() => setIsSignIn(false)} style={{ background: !isSignIn ? "#6366f1" : "#e0e7ff", color: !isSignIn ? "#fff" : "#4f46e5", border: "none", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.5em", fontSize: "1.08em", cursor: "pointer", transition: "0.15s" }}>Sign Up</button>
+        <div className="flex justify-center gap-4 mb-6">
+          <button onClick={() => setIsSignIn(true)} className={`px-6 py-2 rounded-lg font-semibold text-base transition-all duration-150 ${isSignIn ? 'bg-[#1E3A8A] text-white shadow' : 'bg-[#E0E7FF] text-[#1E3A8A]'}`}>Sign In</button>
+          <button onClick={() => setIsSignIn(false)} className={`px-6 py-2 rounded-lg font-semibold text-base transition-all duration-150 ${!isSignIn ? 'bg-[#1E3A8A] text-white shadow' : 'bg-[#E0E7FF] text-[#1E3A8A]'}`}>Sign Up</button>
         </div>
 
         {/* Divider */}
@@ -83,18 +82,12 @@ export default function AuthPage() {
         </div>
 
         {/* Social sign-in buttons */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 18 }}>
-          <button onClick={() => handleSocial("Google")}
-            style={{ background: "#fff", color: "#232946", border: "1.5px solid #e0e7ff", borderRadius: 7, fontWeight: 600, padding: "0.6em 0", fontSize: "1.08em", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-            <img src="/google.svg" alt="Google" width={20} height={20} style={{ marginRight: 6 }} /> Sign in with Google
+        <div className="flex flex-col gap-3 mb-6">
+          <button onClick={() => handleSocial('Google')} className="flex items-center justify-center gap-2 bg-white border border-[#E0E7FF] rounded-lg font-semibold py-2 text-[#111827] hover:shadow transition">
+            <img src="/google.svg" alt="Google" width={20} height={20} className="mr-1" /> Continue with Google
           </button>
-          <button onClick={() => handleSocial("GitHub")}
-            style={{ background: "#fff", color: "#232946", border: "1.5px solid #e0e7ff", borderRadius: 7, fontWeight: 600, padding: "0.6em 0", fontSize: "1.08em", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-            <img src="/github.svg" alt="GitHub" width={20} height={20} style={{ marginRight: 6 }} /> Sign in with GitHub
-          </button>
-          <button onClick={() => handleSocial("LinkedIn")}
-            style={{ background: "#fff", color: "#232946", border: "1.5px solid #e0e7ff", borderRadius: 7, fontWeight: 600, padding: "0.6em 0", fontSize: "1.08em", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}>
-            <img src="/linkedin.svg" alt="LinkedIn" width={20} height={20} style={{ marginRight: 6 }} /> Sign in with LinkedIn
+          <button onClick={() => handleSocial('GitHub')} className="flex items-center justify-center gap-2 bg-white border border-[#E0E7FF] rounded-lg font-semibold py-2 text-[#111827] hover:shadow transition">
+            <img src="/github.svg" alt="GitHub" width={20} height={20} className="mr-1" /> Continue with GitHub
           </button>
         </div>
 
@@ -107,13 +100,13 @@ export default function AuthPage() {
 
         {/* Sign In Form */}
         {isSignIn && (
-          <form onSubmit={handleSignIn} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <form onSubmit={handleSignIn} className="flex flex-col gap-4">
             <input
               type="email"
               placeholder="Email or Username"
               value={email}
               onChange={e => setEmail(e.target.value)}
-              style={{ padding: 12, borderRadius: 7, border: "1.5px solid #6366f1", fontSize: "1.08em" }}
+              className="border border-[#1E3A8A] rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#38BDF8] bg-[#F9FAFB] text-[#111827]"
               required
             />
             <input
@@ -121,17 +114,20 @@ export default function AuthPage() {
               placeholder="Password"
               value={password}
               onChange={e => setPassword(e.target.value)}
-              style={{ padding: 12, borderRadius: 7, border: "1.5px solid #6366f1", fontSize: "1.08em" }}
+              className="border border-[#1E3A8A] rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#38BDF8] bg-[#F9FAFB] text-[#111827]"
               required
             />
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <label style={{ fontSize: "0.98em", color: "#6366f1" }}>
-                <input type="checkbox" checked={remember} onChange={e => setRemember(e.target.checked)} style={{ marginRight: 6 }} /> Remember Me
+            <div className="flex items-center justify-between">
+              <label className="text-sm text-[#1E3A8A]">
+                <input type="checkbox" checked={remember} onChange={e => setRemember(e.target.checked)} className="mr-2" /> Remember Me
               </label>
-              <a href="/forgot-password" style={{ color: "#4f46e5", fontSize: "0.98em" }}>Forgot Password?</a>
+              <Link href="/forgot-password" className="text-sm text-[#9333EA] hover:underline">Forgot Password?</Link>
             </div>
-            {error && <div style={{ color: "#e11d48", fontSize: "0.98em", marginTop: -10 }}>{error}</div>}
-            <button type="submit" style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.7em 0", fontSize: "1.08em", border: "none", cursor: "pointer" }}>Sign In</button>
+            {error && <div className="text-[#e11d48] text-sm mt-[-8px]">{error}</div>}
+            <button type="submit" className="w-full bg-[#1E3A8A] hover:bg-[#38BDF8] text-white font-semibold py-3 rounded-xl shadow-md transition text-lg mb-2">Sign In</button>
+            <div className="text-center mt-2 text-xs text-[#6B7280]">
+              By signing in, you agree to our <Link href="/terms" className="text-[#9333EA] hover:underline">Terms</Link> & <Link href="/privacy" className="text-[#9333EA] hover:underline">Privacy</Link>.
+            </div>
           </form>
         )}
 
@@ -176,21 +172,26 @@ export default function AuthPage() {
           </form>
         )}
 
-        {/* Switch link */}
-        <div style={{ textAlign: "center", fontSize: "0.98em", marginTop: 18 }}>
+        {/* New User Section */}
+        <div className="text-center text-base mt-6">
           {isSignIn ? (
-            <>New to Learnova? <span style={{ color: "#4f46e5", cursor: "pointer" }} onClick={() => setIsSignIn(false)}>Sign Up</span></>
+            <>
+              <span className="text-[#111827]">Don’t have an account?</span> <span className="text-[#9333EA] font-semibold cursor-pointer hover:underline" onClick={() => setIsSignIn(false)}>Sign Up</span>
+            </>
           ) : (
-            <>Already have an account? <span style={{ color: "#4f46e5", cursor: "pointer" }} onClick={() => setIsSignIn(true)}>Sign In</span></>
+            <>
+              <span className="text-[#111827]">Already have an account?</span> <span className="text-[#9333EA] font-semibold cursor-pointer hover:underline" onClick={() => setIsSignIn(true)}>Sign In</span>
+            </>
           )}
         </div>
       </div>
 
       {/* Footer */}
-      <footer style={{ textAlign: "center", color: "#6366f1", fontSize: "0.98em", marginTop: 18 }}>
-        <a href="/terms" style={{ color: "#4f46e5", margin: "0 1em" }}>Terms & Conditions</a>
-        <a href="/privacy" style={{ color: "#4f46e5", margin: "0 1em" }}>Privacy Policy</a>
+      <footer className="text-center text-xs text-[#6B7280] mt-8">
+        <Link href="/privacy" className="hover:underline mr-2">Privacy Policy</Link>
+        <span className="mx-1">|</span>
+        <Link href="/terms" className="hover:underline ml-2">Terms of Service</Link>
       </footer>
-    </main>
+  </main>
   );
 }
