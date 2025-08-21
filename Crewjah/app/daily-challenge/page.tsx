@@ -50,198 +50,61 @@ export default function DailyChallenge() {
 	const xp = 50;
 	const badges = ["Streak Master", "Quiz Whiz"];
 
-	return (
-		<main style={{ maxWidth: 700, margin: "0 auto", padding: "2em 1em" }}>
-			<h2
-				style={{
-					fontWeight: 700,
-					fontSize: "1.4em",
-					color: "#4f46e5",
-					marginBottom: 18,
-				}}
-			>
-				Daily Challenge
-			</h2>
-			{!submitted ? (
-				<section
-					style={{
-						background: "#fff",
-						borderRadius: 12,
-						boxShadow: "0 2px 8px #e0e7ff",
-						padding: 24,
-						marginTop: 8,
-					}}
-				>
-					<h3
-						style={{
-							color: "#232946",
-							fontWeight: 700,
-							fontSize: "1.15em",
-							marginBottom: 10,
-						}}
-					>
-						Today's Task
-					</h3>
-					{/* MCQs */}
-					{current < mcqs.length && (
-						<div style={{ marginBottom: 24 }}>
-							<div
-								style={{
-									marginBottom: 12,
-									fontWeight: 600,
-								}}
-							>
-								MCQ {current + 1} of 3
+		return (
+			<main className="max-w-2xl mx-auto px-4 py-10 animate-fade-in">
+				<h2 className="font-extrabold text-2xl md:text-3xl text-[#4f46e5] mb-6 text-center drop-shadow">Daily Challenge</h2>
+				{!submitted ? (
+					<section className="bg-white rounded-2xl shadow-xl px-8 py-8 mt-2 animate-fade-in">
+						<h3 className="text-[#232946] font-bold text-lg mb-3">Today's Task</h3>
+						{/* MCQs */}
+						{current < mcqs.length && (
+							<div className="mb-8">
+								<div className="mb-3 font-semibold text-[#6366f1]">MCQ {current + 1} of 3</div>
+								<div className="mb-3 text-[#232946] text-base">{mcqs[current].question}</div>
+								<div className="flex flex-col gap-3">
+									{mcqs[current].options.map((opt, i) => (
+										<button
+											key={i}
+											onClick={() => handleMcq(i)}
+											className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-6 py-3 text-base shadow transition-all focus:outline-none focus:ring-2 focus:ring-[#6366f1] hover:bg-[#c7d2fe]"
+										>
+											{String.fromCharCode(65 + i)}. {opt}
+										</button>
+									))}
+								</div>
 							</div>
-							<div style={{ marginBottom: 12 }}>{mcqs[current].question}</div>
-							<div
-								style={{
-									display: "flex",
-									flexDirection: "column",
-									gap: 10,
-								}}
-							>
-								{mcqs[current].options.map((opt, i) => (
-									<button
-										key={i}
-										onClick={() => handleMcq(i)}
-										style={{
-											background: "#e0e7ff",
-											color: "#4f46e5",
-											borderRadius: 7,
-											fontWeight: 600,
-											padding: "0.7em 1.2em",
-											fontSize: "1.08em",
-											border: "none",
-											cursor: "pointer",
-										}}
-									>
-										{String.fromCharCode(65 + i)}. {opt}
-									</button>
-								))}
-							</div>
-						</div>
-					)}
-					{/* Short Answer */}
-					{current === mcqs.length && (
-						<form onSubmit={handleShortSubmit} style={{ marginBottom: 18 }}>
-							<div
-								style={{
-									marginBottom: 12,
-									fontWeight: 600,
-								}}
-							>
-								Short Answer
-							</div>
-							<div style={{ marginBottom: 12 }}>
-								Explain the difference between a stack and a queue.
-							</div>
-							<textarea
-								value={shortAnswer}
-								onChange={(e) => setShortAnswer(e.target.value)}
-								rows={3}
-								style={{
-									width: "100%",
-									borderRadius: 10,
-									border: "1.5px solid #e0e7ff",
-									padding: 14,
-									fontSize: "1.08em",
-									marginBottom: 12,
-								}}
-								placeholder="Type your answer here..."
-							/>
-							<button
-								type="submit"
-								style={{
-									background: "#6366f1",
-									color: "#fff",
-									borderRadius: 7,
-									fontWeight: 600,
-									padding: "0.7em 2em",
-									fontSize: "1.08em",
-									border: "none",
-									cursor: "pointer",
-								}}
-							>
-								Submit
-							</button>
-						</form>
-					)}
-					<button
-						onClick={handleRemind}
-						style={{
-							background: "#e0e7ff",
-							color: "#4f46e5",
-							borderRadius: 7,
-							fontWeight: 600,
-							padding: "0.6em 1.2em",
-							fontSize: "1em",
-							border: "none",
-							cursor: "pointer",
-						}}
-					>
-						Remind me
-					</button>
-					{remind && (
-						<span style={{ marginLeft: 12, color: "#6366f1" }}>
-							Reminder set!
-						</span>
-					)}
-				</section>
-			) : (
-				<section
-					style={{
-						background: "#fff",
-						borderRadius: 12,
-						boxShadow: "0 2px 8px #e0e7ff",
-						padding: 24,
-						marginTop: 8,
-						textAlign: "center",
-					}}
-				>
-					<h3
-						style={{
-							color: "#16a34a",
-							fontWeight: 700,
-							fontSize: "1.15em",
-							marginBottom: 10,
-						}}
-					>
-						Challenge Complete!
-					</h3>
-					<div style={{ marginBottom: 10 }}>
-						Streak: <b>{streak} days</b>
-					</div>
-					<div style={{ marginBottom: 10 }}>
-						XP: <b>{xp}</b>
-					</div>
-					<div style={{ marginBottom: 10 }}>
-						Badges:{" "}
-						{badges.map((b) => (
-							<span
-								key={b}
-								style={{
-									background: "#e0e7ff",
-									color: "#4f46e5",
-									borderRadius: 7,
-									padding: "0.2em 0.7em",
-									marginRight: 6,
-								}}
-							>
-								{b}
-							</span>
-						))}
-					</div>
-					<div
-						style={{
-							marginTop: 18,
-							color: "#6366f1",
-						}}
-					>
-						Come back tomorrow for a new challenge!
-					</div>
-				</section>
-			)}
-		</main>
-	);
+						)}
+						{/* Short Answer */}
+						{current === mcqs.length && (
+							<form onSubmit={handleShortSubmit} className="mb-6 animate-fade-in">
+								<div className="mb-3 font-semibold text-[#6366f1]">Short Answer</div>
+								<div className="mb-3 text-[#232946] text-base">Explain the difference between a stack and a queue.</div>
+								<textarea
+									value={shortAnswer}
+									onChange={(e) => setShortAnswer(e.target.value)}
+									rows={3}
+									className="w-full rounded-lg border-2 border-[#e0e7ff] px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1] bg-[#F9FAFB] text-[#232946] shadow-sm mb-3"
+									placeholder="Type your answer here..."
+								/>
+								<button type="submit" className="bg-gradient-to-r from-[#6366f1] to-[#38BDF8] text-white rounded-lg font-semibold px-8 py-2 shadow-lg transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Submit</button>
+							</form>
+						)}
+						<button onClick={handleRemind} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Remind me</button>
+						{remind && (
+							<span className="ml-4 text-[#6366f1] font-medium">Reminder set!</span>
+						)}
+					</section>
+				) : (
+					<section className="bg-white rounded-2xl shadow-xl px-8 py-8 mt-2 animate-fade-in text-center">
+						<h3 className="text-[#16a34a] font-bold text-lg mb-3">Challenge Complete!</h3>
+						<div className="mb-2">Streak: <b>{streak} days</b></div>
+						<div className="mb-2">XP: <b>{xp}</b></div>
+						<div className="mb-2">Badges: {badges.map((b) => (
+							<span key={b} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg px-3 py-1 font-semibold mr-2">{b}</span>
+						))}</div>
+						<div className="mt-6 text-[#6366f1]">Come back tomorrow for a new challenge!</div>
+					</section>
+				)}
+			</main>
+		);
 }
