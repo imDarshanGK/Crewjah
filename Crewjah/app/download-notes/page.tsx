@@ -24,50 +24,48 @@ export default function DownloadNotes() {
   };
 
   return (
-    <main style={{ maxWidth: 600, margin: "0 auto", padding: "2em 1em" }}>
-      <h2 style={{ fontWeight: 700, fontSize: "1.4em", color: "#4f46e5", marginBottom: 18 }}>Download Notes</h2>
-      <section style={{ background: "#fff", borderRadius: 12, boxShadow: "0 2px 8px #e0e7ff", padding: 24, marginTop: 8 }}>
-        <div style={{ marginBottom: 18 }}>
-          <label style={{ fontWeight: 500, marginRight: 12 }}>Choose notes:</label>
+    <main className="max-w-xl mx-auto px-4 py-10 animate-fade-in">
+      <h2 className="font-extrabold text-2xl md:text-3xl text-[#4f46e5] mb-6 text-center drop-shadow">Download Notes</h2>
+      <section className="bg-white rounded-2xl shadow-xl px-8 py-8 mt-2 animate-fade-in">
+        <div className="mb-6">
+          <label className="font-medium mr-4">Choose notes:</label>
           {noteOptions.map(opt => (
-            <label key={opt.value} style={{ marginRight: 18 }}>
+            <label key={opt.value} className="mr-6 font-medium inline-flex items-center gap-2">
               <input
                 type="radio"
                 name="noteType"
                 value={opt.value}
                 checked={noteType === opt.value}
                 onChange={() => setNoteType(opt.value)}
-                style={{ marginRight: 6 }}
+                className="accent-[#6366f1]"
               />
               {opt.label}
             </label>
           ))}
         </div>
         {noteType === "topics" && (
-          <div style={{ marginBottom: 18 }}>
-            <label style={{ fontWeight: 500, marginRight: 12 }}>Select topics:</label>
+          <div className="mb-6">
+            <label className="font-medium mr-4">Select topics:</label>
             {topics.map(topic => (
-              <label key={topic} style={{ marginRight: 14 }}>
+              <label key={topic} className="mr-4 font-medium inline-flex items-center gap-2">
                 <input
                   type="checkbox"
                   checked={selectedTopics.includes(topic)}
                   onChange={() => handleTopicToggle(topic)}
-                  style={{ marginRight: 6 }}
+                  className="accent-[#6366f1]"
                 />
                 {topic}
               </label>
             ))}
           </div>
         )}
-        <div style={{ marginBottom: 18 }}>
-          <label style={{ fontWeight: 500, marginRight: 12 }}>Export as:</label>
-          <select value={exportType} onChange={e => setExportType(e.target.value)} style={{ borderRadius: 5, border: "1px solid #e0e7ff", padding: "0.2em 0.7em" }}>
+        <div className="mb-6">
+          <label className="font-medium mr-4">Export as:</label>
+          <select value={exportType} onChange={e => setExportType(e.target.value)} className="rounded-md border border-[#e0e7ff] px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#6366f1]">
             {exportTypes.map(type => <option key={type} value={type}>{type}</option>)}
           </select>
         </div>
-        <button onClick={handleExport} style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.7em 2em", fontSize: "1.08em", border: "none", cursor: "pointer" }}>
-          Download
-        </button>
+        <button onClick={handleExport} className="bg-gradient-to-r from-[#6366f1] to-[#38BDF8] text-white rounded-lg font-semibold px-8 py-2 shadow-lg transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Download</button>
       </section>
     </main>
   );
