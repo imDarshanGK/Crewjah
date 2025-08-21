@@ -59,25 +59,25 @@ export default function Flashcards() {
   };
 
   return (
-    <main style={{ maxWidth: 700, margin: "0 auto", padding: "2em 1em" }}>
-      <h2 style={{ fontWeight: 700, fontSize: "1.4em", color: "#4f46e5", marginBottom: 18 }}>Flashcards</h2>
+    <main className="max-w-2xl mx-auto px-4 py-10 animate-fade-in">
+      <h2 className="font-extrabold text-2xl md:text-3xl text-[#4f46e5] mb-6 text-center drop-shadow">Flashcards</h2>
       {/* Decks List */}
       {!showStudy && (
-        <section style={{ marginBottom: 32 }}>
-          <div style={{ display: "flex", gap: 12, marginBottom: 18 }}>
-            <button onClick={handleCreateDeck} style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Create deck</button>
-            <button onClick={handleImport} style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Import .csv</button>
-            <button onClick={handleAutoGen} style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Auto-generate from summaries</button>
-            <button onClick={handleExport} style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Export deck</button>
+        <section className="mb-10 animate-fade-in">
+          <div className="flex flex-wrap gap-3 mb-6">
+            <button onClick={handleCreateDeck} className="bg-gradient-to-r from-[#6366f1] to-[#38BDF8] text-white rounded-lg font-semibold px-5 py-2 shadow-lg transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Create deck</button>
+            <button onClick={handleImport} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Import .csv</button>
+            <button onClick={handleAutoGen} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Auto-generate from summaries</button>
+            <button onClick={handleExport} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Export deck</button>
           </div>
-          <h3 style={{ color: "#232946", fontWeight: 700, fontSize: "1.15em", marginBottom: 10 }}>Your Decks</h3>
-          <ul style={{ marginBottom: 0 }}>
+          <h3 className="text-[#232946] font-bold text-lg mb-3">Your Decks</h3>
+          <ul className="mb-0">
             {decks.map((deck, i) => (
-              <li key={i} style={{ marginBottom: 8, display: "flex", alignItems: "center", gap: 12 }}>
-                <span style={{ fontWeight: 600 }}>{deck.name}</span>
-                <span style={{ color: "#6366f1" }}>{deck.cards} cards</span>
-                <span style={{ color: deck.due > 0 ? "#dc2626" : "#16a34a" }}>{deck.due} due</span>
-                <button onClick={() => handleStartStudy(i)} style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.4em 1em", fontSize: "0.98em", border: "none", cursor: "pointer" }}>Study</button>
+              <li key={i} className="mb-2 flex items-center gap-4">
+                <span className="font-semibold text-[#232946]">{deck.name}</span>
+                <span className="text-[#6366f1]">{deck.cards} cards</span>
+                <span className={deck.due > 0 ? "text-[#dc2626]" : "text-[#16a34a]"}>{deck.due} due</span>
+                <button onClick={() => handleStartStudy(i)} className="bg-gradient-to-r from-[#6366f1] to-[#38BDF8] text-white rounded-lg font-semibold px-4 py-1 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Study</button>
               </li>
             ))}
           </ul>
@@ -86,30 +86,32 @@ export default function Flashcards() {
 
       {/* Study Mode */}
       {showStudy && (
-        <section style={{ background: "#fff", borderRadius: 12, boxShadow: "0 2px 8px #e0e7ff", padding: 24, marginTop: 8, textAlign: "center" }}>
-          <div style={{ marginBottom: 18, fontWeight: 600 }}>Card {studyIdx + 1} of {sampleCards.length}</div>
-          <div style={{ marginBottom: 18, color: "#232946", fontSize: "1.13em" }}><b>Q:</b> {sampleCards[studyIdx].front}</div>
-          <div style={{ marginBottom: 18, color: "#6366f1", fontSize: "1.08em" }}><b>A:</b> {sampleCards[studyIdx].back}</div>
-          <div style={{ marginBottom: 18, color: sampleCards[studyIdx].due ? "#dc2626" : "#16a34a" }}>
+        <section className="bg-white rounded-2xl shadow-xl px-8 py-8 mt-2 animate-fade-in text-center">
+          <div className="mb-5 font-semibold text-[#6366f1]">Card {studyIdx + 1} of {sampleCards.length}</div>
+          <div className="mb-5 text-[#232946] text-lg font-medium"><b>Q:</b> {sampleCards[studyIdx].front}</div>
+          <div className="mb-5 text-[#6366f1] text-base"><b>A:</b> {sampleCards[studyIdx].back}</div>
+          <div className={sampleCards[studyIdx].due ? "mb-5 text-[#dc2626]" : "mb-5 text-[#16a34a]"}>
             {sampleCards[studyIdx].due ? "Due for review" : "Next review soon"}
           </div>
-          <div style={{ display: "flex", gap: 12, justifyContent: "center" }}>
-            <button onClick={handleKnow} style={{ background: "#16a34a", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Know</button>
-            <button onClick={handleDontKnow} style={{ background: "#dc2626", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Don't know</button>
+          <div className="flex gap-3 justify-center mt-4">
+            <button onClick={handleKnow} className="bg-[#16a34a] text-white rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#16a34a]">Know</button>
+            <button onClick={handleDontKnow} className="bg-[#dc2626] text-white rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#dc2626]">Don't know</button>
           </div>
         </section>
       )}
 
       {/* Statistics */}
       {!showStudy && (
-        <section style={{ marginTop: 32 }}>
-          <h3 style={{ color: "#232946", fontWeight: 700, fontSize: "1.15em", marginBottom: 10 }}>Statistics</h3>
-          <div style={{ display: "flex", gap: 24 }}>
-            <div style={{ background: "#fff", borderRadius: 10, padding: "1em 1.5em", boxShadow: "0 2px 8px #e0e7ff", minWidth: 120 }}>
-              <b>Cards studied</b><div style={{ color: "#6366f1", fontSize: "1.3em" }}>{stats.studied}</div>
+        <section className="mt-10 animate-fade-in">
+          <h3 className="text-[#232946] font-bold text-lg mb-3">Statistics</h3>
+          <div className="flex gap-6 flex-wrap">
+            <div className="bg-white rounded-xl px-8 py-6 shadow min-w-[120px] flex-1 flex flex-col items-center">
+              <b className="text-[#6366f1]">Cards studied</b>
+              <div className="text-[#6366f1] text-2xl mt-1 font-bold">{stats.studied}</div>
             </div>
-            <div style={{ background: "#fff", borderRadius: 10, padding: "1em 1.5em", boxShadow: "0 2px 8px #e0e7ff", minWidth: 120 }}>
-              <b>Retention %</b><div style={{ color: "#6366f1", fontSize: "1.3em" }}>{stats.retention}</div>
+            <div className="bg-white rounded-xl px-8 py-6 shadow min-w-[120px] flex-1 flex flex-col items-center">
+              <b className="text-[#6366f1]">Retention %</b>
+              <div className="text-[#6366f1] text-2xl mt-1 font-bold">{stats.retention}</div>
             </div>
           </div>
         </section>
