@@ -94,7 +94,8 @@ def generate_summary(text, sentence_count=3):
     if "queue" in query and ("dsa" in query or "data structure" in query):
         return (
             "A queue is a linear data structure that follows the First In First Out (FIFO) principle. "
-            "Elements are added at the rear and removed from the front. Common operations: enqueue, dequeue."
+            "Elements are added at the rear and removed from the front. Common operations: "
+            "enqueue, dequeue."
         )
     if "tree" in query and ("dsa" in query or "data structure" in query):
         return (
@@ -147,7 +148,9 @@ def generate_summary(text, sentence_count=3):
         summarizer = LsaSummarizer()
         summary = summarizer(parser.document, sentence_count)
     except (ValueError, AttributeError, TypeError) as e:
-        logger.error("❌ Error generating summary: %s", e)
+        logger.error(
+            "❌ Error generating summary: %s", e
+        )
         return (
             "An error occurred while generating the summary."
         )
