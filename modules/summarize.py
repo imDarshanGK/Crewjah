@@ -38,7 +38,8 @@ def generate_summary(text, sentence_count=3):
     if "dsa" in query or "data structures and algorithms" in query:
         return (
             "DSA stands for Data Structures and Algorithms. Data structures are ways to organize "
-            "and store data (like arrays, lists, stacks, queues, trees, and graphs). Algorithms are "
+            "and store data (like arrays, lists, stacks, queues, trees, and graphs). "
+            "Algorithms are "
             "step-by-step procedures or formulas for solving problems. Mastering DSA is essential "
             "for efficient programming and technical interviews."
         )
@@ -89,13 +90,15 @@ def generate_summary(text, sentence_count=3):
         )
     if "stack" in query and ("dsa" in query or "data structure" in query):
         return (
-            "A stack is a linear data structure that follows the Last In First Out (LIFO) principle. "
+            "A stack is a linear data structure that follows the Last In First Out (LIFO) "
+            "principle. "
             "You can only add or remove elements from the top. "
             "Common operations: push, pop, peek."
         )
     if "queue" in query and ("dsa" in query or "data structure" in query):
         return (
-            "A queue is a linear data structure that follows the First In First Out (FIFO) principle. "
+            "A queue is a linear data structure that follows the First In First Out (FIFO) "
+            "principle. "
             "Elements are added at the rear and removed from the front. "
             "Common operations: enqueue, dequeue."
         )
@@ -117,7 +120,8 @@ def generate_summary(text, sentence_count=3):
         )
     if "code" in query:
         return (
-            "Please provide a specific code snippet or a detailed question for a meaningful summary."
+            "Please provide a specific code snippet or a detailed question for a "
+            "meaningful summary."
         )
     if "explain" in query:
         return (
