@@ -7,7 +7,9 @@ extract the most relevant sentences from a given input text.
 Useful for condensing long pieces of text into a few key points.
 """
 
+
 import logging
+import nltk
 from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
@@ -135,7 +137,6 @@ def generate_summary(text, sentence_count=3):
 
     try:
         # Ensure NLTK 'punkt' and 'punkt_tab' are available
-        import nltk
         try:
             nltk.data.find('tokenizers/punkt')
         except LookupError:
