@@ -53,30 +53,39 @@ def generate_summary(text, sentence_count=3):
         (lambda q: "tuple" in q and "python" in q,
          "Python tuples are ordered, immutable collections. Once created, their elements "
          "cannot be changed. Example: my_tuple = (1, 2, 3)"),
-        (lambda q: "dict" in q or "dictionary" in q,
-         "A Python dictionary is an unordered, mutable collection of key-value pairs. "
-         "Example: my_dict = {'a': 1, 'b': 2}"),
-        (lambda q: "set" in q and "python" in q,
-         "A Python set is an unordered collection of unique elements. Example: my_set = {1, 2, 3}"),
-        (lambda q: "function" in q and "python" in q,
-         "A Python function is a reusable block of code defined with def. Example: def foo(): return 'bar'"),
-        (lambda q: "class" in q and "python" in q,
-         "A Python class is a blueprint for creating objects. Example: class MyClass: pass"),
-        (lambda q: "loop" in q and "python" in q,
-         "Python supports for and while loops for iteration. Example: for i in range(5): print(i)"),
-        (lambda q: "stack" in q and ("dsa" in q or "data structure" in q),
-         "A stack is a linear data structure that follows the Last In First Out (LIFO) principle. "
-         "You can only add or remove elements from the top. Common operations: push, pop, peek."),
-        (lambda q: "queue" in q and ("dsa" in q or "data structure" in q),
-         "A queue is a linear data structure that follows the First In First Out (FIFO) principle. "
-         "Elements are added at the rear and removed from the front. Common operations: enqueue, dequeue."),
-        (lambda q: "tree" in q and ("dsa" in q or "data structure" in q),
-         "A tree is a hierarchical data structure with nodes connected by edges. The top node is called the root. "
-         "Common types: binary tree, BST, AVL tree."),
-        (lambda q: "graph" in q and ("dsa" in q or "data structure" in q),
-         "A graph is a collection of nodes (vertices) and edges connecting them. Used to represent networks, relationships, and paths."),
-        (lambda q: "algorithm" in q,
-         "An algorithm is a step-by-step procedure to solve a problem. Examples: searching, sorting, recursion, dynamic programming."),
+    (lambda q: "dict" in q or "dictionary" in q,
+     "A Python dictionary is an unordered, mutable collection of key-value pairs. "
+     "Example: my_dict = {'a': 1, 'b': 2}. "
+     "See: https://docs.python.org/3/tutorial/datastructures.html#dictionaries"),
+    (lambda q: "set" in q and "python" in q,
+     "A Python set is an unordered collection of unique elements. "
+     "Example: my_set = {1, 2, 3}"),
+    (lambda q: "function" in q and "python" in q,
+     "A Python function is a reusable block of code defined with def. "
+     "Example: def foo(): return 'bar'"),
+    (lambda q: "class" in q and "python" in q,
+     "A Python class is a blueprint for creating objects. "
+     "Example: class MyClass: pass"),
+    (lambda q: "loop" in q and "python" in q,
+     "Python supports for and while loops for iteration. "
+     "Example: for i in range(5): print(i)"),
+    (lambda q: "stack" in q and ("dsa" in q or "data structure" in q),
+     "A stack is a linear data structure that follows the Last In First Out (LIFO) principle. "
+     "You can only add or remove elements from the top. "
+     "Common operations: push, pop, peek."),
+    (lambda q: "queue" in q and ("dsa" in q or "data structure" in q),
+     "A queue is a linear data structure that follows the First In First Out (FIFO) principle. "
+     "Elements are added at the rear and removed from the front. "
+     "Common operations: enqueue, dequeue."),
+    (lambda q: "tree" in q and ("dsa" in q or "data structure" in q),
+     "A tree is a hierarchical data structure with nodes connected by edges. "
+     "The top node is called the root. Common types: binary tree, BST, AVL tree."),
+    (lambda q: "graph" in q and ("dsa" in q or "data structure" in q),
+     "A graph is a collection of nodes (vertices) and edges connecting them. "
+     "Used to represent networks, relationships, and paths."),
+    (lambda q: "algorithm" in q,
+     "An algorithm is a step-by-step procedure to solve a problem. "
+     "Examples: searching, sorting, recursion, dynamic programming."),
         (lambda q: "code" in q,
          "Please provide a specific code snippet or a detailed question for a meaningful summary."),
         (lambda q: "explain" in q,
