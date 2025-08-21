@@ -74,7 +74,8 @@ def generate_summary(text, sentence_count=3):
     if "function" in query and "python" in query:
         return (
             "A Python function is a reusable block of code defined with def. "
-            "Example: def foo(): return 'bar'"
+            "Example: def foo(): "
+            "    return 'bar'"
         )
     if "class" in query and "python" in query:
         return (
@@ -89,18 +90,20 @@ def generate_summary(text, sentence_count=3):
     if "stack" in query and ("dsa" in query or "data structure" in query):
         return (
             "A stack is a linear data structure that follows the Last In First Out (LIFO) principle. "
-            "You can only add or remove elements from the top. Common operations: push, pop, peek."
+            "You can only add or remove elements from the top. "
+            "Common operations: push, pop, peek."
         )
     if "queue" in query and ("dsa" in query or "data structure" in query):
         return (
             "A queue is a linear data structure that follows the First In First Out (FIFO) principle. "
-            "Elements are added at the rear and removed from the front. Common operations: "
-            "enqueue, dequeue."
+            "Elements are added at the rear and removed from the front. "
+            "Common operations: enqueue, dequeue."
         )
     if "tree" in query and ("dsa" in query or "data structure" in query):
         return (
             "A tree is a hierarchical data structure with nodes connected by edges. "
-            "The top node is called the root. Common types: binary tree, BST, AVL tree."
+            "The top node is called the root. "
+            "Common types: binary tree, BST, AVL tree."
         )
     if "graph" in query and ("dsa" in query or "data structure" in query):
         return (
