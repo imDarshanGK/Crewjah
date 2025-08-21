@@ -18,30 +18,30 @@ export default function ForgotPassword() {
   }
 
   return (
-    <main style={{ maxWidth: 400, margin: "3em auto", padding: 24, background: "#fff", borderRadius: 12, boxShadow: "0 2px 12px #e0e7ff" }}>
-      <h1 style={{ textAlign: "center", color: "#4f46e5", fontWeight: 700 }}>Forgot Password</h1>
-      {sent ? (
-        <div style={{ color: "#22c55e", fontSize: "1.08em", marginTop: 32, textAlign: "center" }}>
-          We’ve sent a reset link to your email.
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 18, marginTop: 24 }}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            style={{ padding: 12, borderRadius: 7, border: "1.5px solid #6366f1", fontSize: "1.08em" }}
-            required
-          />
-          {error && <div style={{ color: "#e11d48", fontSize: "0.98em", marginTop: -10 }}>{error}</div>}
-          <button type="submit" style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.7em 0", fontSize: "1.08em", border: "none", cursor: "pointer" }}>Send reset link</button>
-        </form>
-      )}
-      <footer style={{ textAlign: "center", color: "#6366f1", fontSize: "0.98em", marginTop: 18 }}>
-        <Link href="/terms" style={{ color: "#4f46e5", margin: "0 1em" }}>Terms & Conditions</Link>
-        <Link href="/privacy" style={{ color: "#4f46e5", margin: "0 1em" }}>Privacy Policy</Link>
-      </footer>
+    <main className="max-w-sm mx-auto px-4 py-12 animate-fade-in">
+      <div className="bg-white rounded-2xl shadow-xl px-8 py-8">
+        <h1 className="text-center text-[#4f46e5] font-extrabold text-2xl mb-4 drop-shadow">Forgot Password</h1>
+        {sent ? (
+          <div className="text-[#22c55e] text-base mt-8 text-center animate-fade-in">We’ve sent a reset link to your email.</div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5 mt-6 animate-fade-in">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              className="px-4 py-3 rounded-lg border-2 border-[#6366f1] text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1] bg-[#F9FAFB]"
+              required
+            />
+            {error && <div className="text-[#e11d48] text-sm -mt-2">{error}</div>}
+            <button type="submit" className="bg-gradient-to-r from-[#6366f1] to-[#38BDF8] text-white rounded-lg font-semibold py-3 shadow-lg transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1] hover:scale-105">Send reset link</button>
+          </form>
+        )}
+        <footer className="text-center text-[#6366f1] text-sm mt-6">
+          <Link href="/terms" className="text-[#4f46e5] mx-2 hover:underline">Terms & Conditions</Link>
+          <Link href="/privacy" className="text-[#4f46e5] mx-2 hover:underline">Privacy Policy</Link>
+        </footer>
+      </div>
     </main>
   );
 }
