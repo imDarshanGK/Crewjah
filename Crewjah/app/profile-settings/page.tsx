@@ -13,17 +13,17 @@ export default function ProfileSettings() {
   }, []);
 
   return (
-    <main style={{ maxWidth: 500, margin: "3em auto", padding: 24, background: "#fff", borderRadius: 12, boxShadow: "0 2px 12px #e0e7ff" }}>
-      <h1 style={{ color: "#4f46e5", fontWeight: 700, marginBottom: 12 }}>Profile & Settings</h1>
-      <p style={{ marginBottom: 24 }}>Manage your profile and account settings.</p>
-      <div style={{ marginBottom: 18 }}>
-        <label style={{ fontWeight: 600, color: "#6366f1" }}>Name:</label>
-        <div style={{ marginBottom: 10, fontSize: "1.1em" }}>{name || <span style={{ color: '#aaa' }}>Not set</span>}</div>
-        <label style={{ fontWeight: 600, color: "#6366f1" }}>Email:</label>
-        <div style={{ marginBottom: 10, fontSize: "1.1em" }}>{email || <span style={{ color: '#aaa' }}>Not set</span>}</div>
-      </div>
-      <div style={{ marginTop: 24, color: '#aaa', fontSize: '0.98em' }}>
-        (Profile editing coming soon)
+    <main className="max-w-md mx-auto px-4 py-12 animate-fade-in">
+      <div className="bg-white rounded-2xl shadow-xl px-8 py-8">
+        <h1 className="text-[#4f46e5] font-extrabold text-2xl mb-2 drop-shadow">Profile & Settings</h1>
+        <p className="mb-6 text-[#232946]">Manage your profile and account settings.</p>
+        <div className="mb-6">
+          <label className="font-semibold text-[#6366f1]">Name:</label>
+          <div className="mb-3 text-lg">{name || <span className="text-[#aaa]">Not set</span>}</div>
+          <label className="font-semibold text-[#6366f1]">Email:</label>
+          <div className="mb-3 text-lg">{email || <span className="text-[#aaa]">Not set</span>}</div>
+        </div>
+        <div className="mt-8 text-[#aaa] text-sm text-center">(Profile editing coming soon)</div>
       </div>
     </main>
   );
