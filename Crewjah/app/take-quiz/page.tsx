@@ -93,74 +93,60 @@ export default function TakeQuiz() {
     .filter(Boolean);
 
   return (
-    <main style={{ maxWidth: 700, margin: "0 auto", padding: "2em 1em" }}>
-      <h2 style={{ fontWeight: 700, fontSize: "1.4em", color: "#4f46e5", marginBottom: 18 }}>Take a Quiz</h2>
+    <main className="max-w-2xl mx-auto px-4 py-10 animate-fade-in">
+      <h2 className="font-extrabold text-2xl md:text-3xl text-[#4f46e5] mb-6 text-center drop-shadow">Take a Quiz</h2>
       {!started && !finished && (
-        <form onSubmit={e => { e.preventDefault(); handleStart(); }} style={{ marginBottom: 32 }}>
-          <div style={{ display: "flex", gap: 18, marginBottom: 18 }}>
-            <label style={{ fontWeight: 500 }}>
+        <form onSubmit={e => { e.preventDefault(); handleStart(); }} className="mb-8 animate-fade-in">
+          <div className="flex flex-wrap gap-5 mb-6">
+            <label className="font-medium flex items-center gap-2">
               Subject:
-              <select value={subject} onChange={e => setSubject(e.target.value)} style={{ marginLeft: 8, borderRadius: 5, border: "1px solid #e0e7ff", padding: "0.2em 0.7em" }}>
+              <select value={subject} onChange={e => setSubject(e.target.value)} className="ml-1 rounded-md border border-[#e0e7ff] px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#6366f1]">
                 {subjects.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
             </label>
-            <label style={{ fontWeight: 500 }}>
+            <label className="font-medium flex items-center gap-2">
               Difficulty:
-              <select value={difficulty} onChange={e => setDifficulty(e.target.value)} style={{ marginLeft: 8, borderRadius: 5, border: "1px solid #e0e7ff", padding: "0.2em 0.7em" }}>
+              <select value={difficulty} onChange={e => setDifficulty(e.target.value)} className="ml-1 rounded-md border border-[#e0e7ff] px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#6366f1]">
                 {difficulties.map(d => <option key={d} value={d}>{d}</option>)}
               </select>
             </label>
-            <label style={{ fontWeight: 500 }}>
+            <label className="font-medium flex items-center gap-2">
               Number:
-              <input type="number" min={1} max={20} value={numQuestions} onChange={e => setNumQuestions(Number(e.target.value))} style={{ marginLeft: 8, borderRadius: 5, border: "1px solid #e0e7ff", padding: "0.2em 0.7em", width: 60 }} />
+              <input type="number" min={1} max={20} value={numQuestions} onChange={e => setNumQuestions(Number(e.target.value))} className="ml-1 rounded-md border border-[#e0e7ff] px-2 py-1 w-20 focus:outline-none focus:ring-2 focus:ring-[#6366f1]" />
             </label>
           </div>
-          <button type="submit" style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.7em 2em", fontSize: "1.08em", border: "none", cursor: "pointer" }}>
-            Start Quiz
-          </button>
+          <button type="submit" className="bg-gradient-to-r from-[#6366f1] to-[#38BDF8] hover:from-[#38BDF8] hover:to-[#6366f1] text-white rounded-lg font-semibold px-8 py-2 shadow-lg transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Start Quiz</button>
         </form>
       )}
 
       {/* Quiz Flow */}
       {started && !finished && (
-        <section style={{ background: "#fff", borderRadius: 12, boxShadow: "0 2px 8px #e0e7ff", padding: 24, marginTop: 8 }}>
-          <div style={{ marginBottom: 18, fontWeight: 600 }}>Question {current + 1} of {questions.length}</div>
-          <div style={{ marginBottom: 18, color: "#232946", fontSize: "1.13em" }}>{questions[current].question}</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 18 }}>
+        <section className="bg-white rounded-2xl shadow-xl px-8 py-8 mt-2 animate-fade-in">
+          <div className="mb-5 font-semibold text-[#6366f1]">Question {current + 1} of {questions.length}</div>
+          <div className="mb-5 text-[#232946] text-lg font-medium">{questions[current].question}</div>
+          <div className="flex flex-col gap-3 mb-5">
             {questions[current].options.map((opt, i) => (
               <button
                 key={i}
                 onClick={() => handleOption(i)}
-                style={{
-                  background: selected === i ? "#6366f1" : "#e0e7ff",
-                  color: selected === i ? "#fff" : "#4f46e5",
-                  borderRadius: 7,
-                  fontWeight: 600,
-                  padding: "0.7em 1.2em",
-                  fontSize: "1.08em",
-                  border: "none",
-                  cursor: "pointer",
-                  outline: selected === i ? "2px solid #6366f1" : "none"
-                }}
+                className={`rounded-lg font-semibold px-6 py-3 text-base shadow transition-all focus:outline-none focus:ring-2 focus:ring-[#6366f1] ${selected === i ? 'bg-[#6366f1] text-white scale-105' : 'bg-[#e0e7ff] text-[#4f46e5] hover:bg-[#c7d2fe]'} ${feedback !== null ? 'opacity-70 cursor-not-allowed' : ''}`}
                 disabled={feedback !== null}
+                tabIndex={0}
+                aria-label={`Option ${String.fromCharCode(65 + i)}: ${opt}`}
               >
                 {String.fromCharCode(65 + i)}. {opt}
               </button>
             ))}
           </div>
           {feedback && (
-            <div style={{ marginBottom: 18, color: feedback === "Correct!" ? "#16a34a" : "#dc2626", fontWeight: 600 }}>{feedback}</div>
+            <div className={`mb-5 font-semibold ${feedback === "Correct!" ? "text-[#16a34a]" : "text-[#dc2626]"}`}>{feedback}</div>
           )}
-          <div style={{ display: "flex", gap: 12 }}>
+          <div className="flex gap-3">
             {!feedback && (
-              <button onClick={handleSubmit} style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.7em 2em", fontSize: "1.08em", border: "none", cursor: "pointer" }}>
-                Submit
-              </button>
+              <button onClick={handleSubmit} className="bg-gradient-to-r from-[#6366f1] to-[#38BDF8] hover:from-[#38BDF8] hover:to-[#6366f1] text-white rounded-lg font-semibold px-8 py-2 shadow-lg transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Submit</button>
             )}
             {feedback && (
-              <button onClick={handleNext} style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.7em 2em", fontSize: "1.08em", border: "none", cursor: "pointer" }}>
-                {current + 1 === questions.length ? "Finish" : "Next"}
-              </button>
+              <button onClick={handleNext} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-8 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">{current + 1 === questions.length ? "Finish" : "Next"}</button>
             )}
           </div>
         </section>
@@ -168,16 +154,16 @@ export default function TakeQuiz() {
 
       {/* End Screen */}
       {finished && (
-        <section style={{ background: "#fff", borderRadius: 12, boxShadow: "0 2px 8px #e0e7ff", padding: 24, marginTop: 8, textAlign: "center" }}>
-          <h3 style={{ color: "#232946", fontWeight: 700, fontSize: "1.15em", marginBottom: 10 }}>Quiz Complete!</h3>
-          <div style={{ marginBottom: 10 }}>Score: <b>{correct} / {questions.length}</b></div>
-          <div style={{ marginBottom: 10 }}>% Accuracy: <b>{accuracy}%</b></div>
-          <div style={{ marginBottom: 10 }}>Time: <b>{timeTaken} sec</b></div>
-          <div style={{ marginBottom: 18 }}>Weak topics: {weakTopics.length > 0 ? weakTopics.join(", ") : "None!"}</div>
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <button onClick={handleRetry} style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Retry wrong questions</button>
-            <button onClick={handleCreateFlashcards} style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Create flashcards from mistakes</button>
-            <button onClick={handleShare} style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Share result</button>
+        <section className="bg-white rounded-2xl shadow-xl px-8 py-8 mt-2 animate-fade-in text-center">
+          <h3 className="text-[#232946] font-bold text-lg mb-2">Quiz Complete!</h3>
+          <div className="mb-2">Score: <b>{correct} / {questions.length}</b></div>
+          <div className="mb-2">% Accuracy: <b>{accuracy}%</b></div>
+          <div className="mb-2">Time: <b>{timeTaken} sec</b></div>
+          <div className="mb-5">Weak topics: {weakTopics.length > 0 ? weakTopics.join(", ") : "None!"}</div>
+          <div className="flex gap-3 justify-center flex-wrap mt-4">
+            <button onClick={handleRetry} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Retry wrong questions</button>
+            <button onClick={handleCreateFlashcards} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Create flashcards from mistakes</button>
+            <button onClick={handleShare} className="bg-gradient-to-r from-[#6366f1] to-[#38BDF8] text-white rounded-lg font-semibold px-5 py-2 shadow-lg transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Share result</button>
           </div>
         </section>
       )}
