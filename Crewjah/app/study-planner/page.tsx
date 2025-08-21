@@ -36,29 +36,29 @@ export default function StudyPlanner() {
   };
 
   return (
-    <main style={{ maxWidth: 900, margin: "0 auto", padding: "2em 1em" }}>
-      <h2 style={{ fontWeight: 700, fontSize: "1.4em", color: "#4f46e5", marginBottom: 18 }}>Study Planner</h2>
+    <main className="max-w-4xl mx-auto px-4 py-10 animate-fade-in">
+      <h2 className="font-extrabold text-2xl md:text-3xl text-[#4f46e5] mb-6 text-center drop-shadow">Study Planner</h2>
       {/* Add Task */}
-      <form onSubmit={handleAdd} style={{ marginBottom: 32, display: "flex", gap: 12, flexWrap: "wrap" }}>
+      <form onSubmit={handleAdd} className="mb-8 flex flex-wrap gap-4 animate-fade-in" autoComplete="on" aria-label="Add Study Task">
         <input
           type="text"
           value={form.topic}
           onChange={e => setForm({ ...form, topic: e.target.value })}
           placeholder="Topic"
           required
-          style={{ borderRadius: 7, border: "1.5px solid #e0e7ff", padding: 10, fontSize: "1em", flex: 1 }}
+          className="rounded-lg border-2 border-[#e0e7ff] px-4 py-2 text-base flex-1 focus:outline-none focus:ring-2 focus:ring-[#6366f1] bg-[#F9FAFB] text-[#232946] shadow-sm"
         />
         <input
           type="text"
           value={form.resource}
           onChange={e => setForm({ ...form, resource: e.target.value })}
           placeholder="Resource"
-          style={{ borderRadius: 7, border: "1.5px solid #e0e7ff", padding: 10, fontSize: "1em", flex: 1 }}
+          className="rounded-lg border-2 border-[#e0e7ff] px-4 py-2 text-base flex-1 focus:outline-none focus:ring-2 focus:ring-[#6366f1] bg-[#F9FAFB] text-[#232946] shadow-sm"
         />
         <select
           value={form.date}
           onChange={e => setForm({ ...form, date: e.target.value })}
-          style={{ borderRadius: 7, border: "1.5px solid #e0e7ff", padding: 10, fontSize: "1em" }}
+          className="rounded-lg border-2 border-[#e0e7ff] px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1] bg-[#F9FAFB] text-[#232946] shadow-sm"
         >
           {days.map(d => <option key={d} value={d}>{d}</option>)}
         </select>
@@ -69,33 +69,31 @@ export default function StudyPlanner() {
           max={180}
           onChange={e => setForm({ ...form, duration: Number(e.target.value) })}
           placeholder="Duration (min)"
-          style={{ borderRadius: 7, border: "1.5px solid #e0e7ff", padding: 10, fontSize: "1em", width: 120 }}
+          className="rounded-lg border-2 border-[#e0e7ff] px-4 py-2 text-base w-32 focus:outline-none focus:ring-2 focus:ring-[#6366f1] bg-[#F9FAFB] text-[#232946] shadow-sm"
         />
-        <button type="submit" style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.7em 2em", fontSize: "1.08em", border: "none", cursor: "pointer" }}>
-          Add Task
-        </button>
+        <button type="submit" className="bg-gradient-to-r from-[#6366f1] to-[#38BDF8] text-white rounded-lg font-semibold px-8 py-2 shadow-lg transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Add Task</button>
       </form>
 
       {/* Weekly Calendar */}
-      <section style={{ marginBottom: 32 }}>
-        <h3 style={{ color: "#232946", fontWeight: 700, fontSize: "1.15em", marginBottom: 10 }}>Weekly Calendar</h3>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+      <section className="mb-10 animate-fade-in">
+        <h3 className="text-[#232946] font-bold text-lg mb-3">Weekly Calendar</h3>
+        <div className="flex gap-3 flex-wrap">
           {days.map(day => (
-            <div key={day} style={{ flex: 1, minWidth: 120 }}>
-              <div style={{ fontWeight: 600, color: "#6366f1", marginBottom: 6 }}>{day}</div>
-              <ul style={{ minHeight: 40 }}>
+            <div key={day} className="flex-1 min-w-[160px]">
+              <div className="font-semibold text-[#6366f1] mb-2">{day}</div>
+              <ul className="min-h-[40px]">
                 {tasks.filter(t => t.date === day).map((t, i) => (
-                  <li key={i} style={{ background: t.done ? "#d1fae5" : "#f3f4f6", borderRadius: 7, marginBottom: 6, padding: 8, fontSize: "0.98em" }}>
-                    <div><b>{t.topic}</b> <span style={{ color: "#888" }}>({t.resource})</span></div>
-                    <div style={{ fontSize: "0.95em", color: "#6366f1" }}>{t.duration} min</div>
-                    {!t.done && <button onClick={() => handleDone(tasks.findIndex(x => x === t))} style={{ background: "#16a34a", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.3em 1em", fontSize: "0.95em", border: "none", cursor: "pointer", marginTop: 4 }}>Mark done</button>}
+                  <li key={i} className={`rounded-lg mb-2 p-3 text-base shadow-sm ${t.done ? 'bg-[#d1fae5]' : 'bg-[#f3f4f6]'}`}>
+                    <div><b>{t.topic}</b> <span className="text-[#888]">({t.resource})</span></div>
+                    <div className="text-[#6366f1] text-sm">{t.duration} min</div>
+                    {!t.done && <button onClick={() => handleDone(tasks.findIndex(x => x === t))} className="bg-[#16a34a] text-white rounded-lg font-semibold px-4 py-1 mt-2 shadow transition text-sm focus:outline-none focus:ring-2 focus:ring-[#16a34a]">Mark done</button>}
                     {t.done && (
                       <textarea
                         value={t.reflection}
                         onChange={e => handleReflection(tasks.findIndex(x => x === t), e.target.value)}
                         placeholder="Reflection..."
                         rows={2}
-                        style={{ width: "100%", borderRadius: 7, border: "1.5px solid #e0e7ff", padding: 6, fontSize: "0.95em", marginTop: 4 }}
+                        className="w-full rounded-lg border-2 border-[#e0e7ff] px-2 py-1 text-sm mt-2 focus:outline-none focus:ring-2 focus:ring-[#6366f1] bg-[#F9FAFB] text-[#232946] shadow-sm"
                       />
                     )}
                   </li>
@@ -107,12 +105,10 @@ export default function StudyPlanner() {
       </section>
 
       {/* Pomodoro Timer (placeholder) */}
-      <section style={{ marginBottom: 32 }}>
-        <h3 style={{ color: "#232946", fontWeight: 700, fontSize: "1.15em", marginBottom: 10 }}>Focus Timer (Pomodoro)</h3>
-        <button onClick={handleStartTimer} style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.7em 2em", fontSize: "1.08em", border: "none", cursor: "pointer" }}>
-          Start 25/5 Pomodoro
-        </button>
-        {showTimer && <div style={{ marginTop: 12, color: "#6366f1" }}>Timer running... (demo)</div>}
+      <section className="mb-10 animate-fade-in">
+        <h3 className="text-[#232946] font-bold text-lg mb-3">Focus Timer (Pomodoro)</h3>
+        <button onClick={handleStartTimer} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-8 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Start 25/5 Pomodoro</button>
+        {showTimer && <div className="mt-3 text-[#6366f1]">Timer running... (demo)</div>}
       </section>
     </main>
   );
