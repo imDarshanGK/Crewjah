@@ -21,60 +21,60 @@ export default function ProgressTracker() {
   };
 
   return (
-    <main style={{ maxWidth: 900, margin: "0 auto", padding: "2em 1em" }}>
-      <h2 style={{ fontWeight: 700, fontSize: "1.4em", color: "#4f46e5", marginBottom: 18 }}>Progress Tracker</h2>
+    <main className="max-w-4xl mx-auto px-4 py-10 animate-fade-in">
+      <h2 className="font-extrabold text-2xl md:text-3xl text-[#4f46e5] mb-6 text-center drop-shadow">Progress Tracker</h2>
       {/* Filters */}
-      <section style={{ marginBottom: 32, display: "flex", gap: 18, alignItems: "center" }}>
-        <label style={{ fontWeight: 500 }}>
+      <section className="mb-10 flex flex-wrap gap-4 items-center animate-fade-in">
+        <label className="font-medium flex items-center gap-2">
           Subject:
-          <select value={subject} onChange={e => setSubject(e.target.value)} style={{ marginLeft: 8, borderRadius: 5, border: "1px solid #e0e7ff", padding: "0.2em 0.7em" }}>
+          <select value={subject} onChange={e => setSubject(e.target.value)} className="ml-1 rounded-md border border-[#e0e7ff] px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#6366f1]">
             {subjects.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
         </label>
-        <label style={{ fontWeight: 500 }}>
+        <label className="font-medium flex items-center gap-2">
           From:
-          <input type="date" value={dateRange.from} onChange={e => setDateRange({ ...dateRange, from: e.target.value })} style={{ marginLeft: 8, borderRadius: 5, border: "1px solid #e0e7ff", padding: "0.2em 0.7em" }} />
+          <input type="date" value={dateRange.from} onChange={e => setDateRange({ ...dateRange, from: e.target.value })} className="ml-1 rounded-md border border-[#e0e7ff] px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#6366f1]" />
         </label>
-        <label style={{ fontWeight: 500 }}>
+        <label className="font-medium flex items-center gap-2">
           To:
-          <input type="date" value={dateRange.to} onChange={e => setDateRange({ ...dateRange, to: e.target.value })} style={{ marginLeft: 8, borderRadius: 5, border: "1px solid #e0e7ff", padding: "0.2em 0.7em" }} />
+          <input type="date" value={dateRange.to} onChange={e => setDateRange({ ...dateRange, to: e.target.value })} className="ml-1 rounded-md border border-[#e0e7ff] px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#6366f1]" />
         </label>
-        <button onClick={() => handleExport("PDF")} style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Export PDF</button>
-        <button onClick={() => handleExport("CSV")} style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Export CSV</button>
+        <button onClick={() => handleExport("PDF")} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Export PDF</button>
+        <button onClick={() => handleExport("CSV")} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Export CSV</button>
       </section>
 
       {/* Charts/Stats (placeholders) */}
-      <section style={{ marginBottom: 32 }}>
-        <h3 style={{ color: "#232946", fontWeight: 700, fontSize: "1.15em", marginBottom: 10 }}>Study Time (min/day)</h3>
-        <div style={{ background: "#f3f4f6", borderRadius: 10, padding: 18, marginBottom: 18 }}>
-          <div style={{ display: "flex", gap: 8 }}>
+      <section className="mb-10 animate-fade-in">
+        <h3 className="text-[#232946] font-bold text-lg mb-3">Study Time (min/day)</h3>
+        <div className="bg-[#f3f4f6] rounded-xl px-8 py-6 mb-6">
+          <div className="flex gap-2 items-end h-32">
             {stats.studyTime.map((v, i) => (
-              <div key={i} style={{ height: v * 1.5, width: 30, background: "#6366f1", borderRadius: 5, display: "inline-block" }} title={`Day ${i + 1}: ${v} min`} />
+              <div key={i} className="inline-block rounded-md bg-[#6366f1]" style={{ height: `${v * 1.5}px`, width: 30 }} title={`Day ${i + 1}: ${v} min`} />
             ))}
           </div>
         </div>
-        <h3 style={{ color: "#232946", fontWeight: 700, fontSize: "1.15em", marginBottom: 10 }}>Quizzes Completed & Accuracy (%)</h3>
-        <div style={{ background: "#f3f4f6", borderRadius: 10, padding: 18, marginBottom: 18 }}>
-          <div style={{ display: "flex", gap: 8 }}>
+        <h3 className="text-[#232946] font-bold text-lg mb-3">Quizzes Completed & Accuracy (%)</h3>
+        <div className="bg-[#f3f4f6] rounded-xl px-8 py-6 mb-6">
+          <div className="flex gap-4 items-end h-32">
             {stats.quizzes.map((q, i) => (
-              <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: 40 }}>
-                <div style={{ height: q * 15, width: 18, background: "#4f46e5", borderRadius: 4, marginBottom: 4 }} title={`Day ${i + 1}: ${q} quizzes`} />
-                <div style={{ color: "#6366f1", fontSize: "0.95em" }}>{q}</div>
-                <div style={{ height: stats.accuracy[i], width: 6, background: "#16a34a", borderRadius: 3, marginTop: 2 }} title={`Accuracy: ${stats.accuracy[i]}%`} />
+              <div key={i} className="flex flex-col items-center w-12">
+                <div className="rounded bg-[#4f46e5] mb-1" style={{ height: `${q * 15}px`, width: 18 }} title={`Day ${i + 1}: ${q} quizzes`} />
+                <div className="text-[#6366f1] text-sm">{q}</div>
+                <div className="rounded bg-[#16a34a] mt-1" style={{ height: `${stats.accuracy[i]}px`, width: 6 }} title={`Accuracy: ${stats.accuracy[i]}%`} />
               </div>
             ))}
           </div>
         </div>
-        <h3 style={{ color: "#232946", fontWeight: 700, fontSize: "1.15em", marginBottom: 10 }}>Flashcard Retention (%)</h3>
-        <div style={{ background: "#f3f4f6", borderRadius: 10, padding: 18, marginBottom: 18 }}>
-          <div style={{ display: "flex", gap: 8 }}>
+        <h3 className="text-[#232946] font-bold text-lg mb-3">Flashcard Retention (%)</h3>
+        <div className="bg-[#f3f4f6] rounded-xl px-8 py-6 mb-6">
+          <div className="flex gap-2 items-end h-32">
             {stats.flashRetention.map((v, i) => (
-              <div key={i} style={{ height: v, width: 30, background: "#f59e42", borderRadius: 5, display: "inline-block" }} title={`Day ${i + 1}: ${v}%`} />
+              <div key={i} className="inline-block rounded-md bg-[#f59e42]" style={{ height: `${v}px`, width: 30 }} title={`Day ${i + 1}: ${v}%`} />
             ))}
           </div>
         </div>
-        <h3 style={{ color: "#232946", fontWeight: 700, fontSize: "1.15em", marginBottom: 10 }}>Streak</h3>
-        <div style={{ background: "#fff", borderRadius: 10, padding: 18, color: "#6366f1", fontWeight: 700, fontSize: "1.2em", display: "inline-block" }}>{stats.streak} days</div>
+        <h3 className="text-[#232946] font-bold text-lg mb-3">Streak</h3>
+        <div className="bg-white rounded-xl px-8 py-6 text-[#6366f1] font-bold text-xl inline-block shadow">{stats.streak} days</div>
       </section>
     </main>
   );
