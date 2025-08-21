@@ -145,7 +145,8 @@ def generate_summary(text, sentence_count=3):
         except LookupError as e:
             return (
                 "NLTK tokenizers are missing or the language is not supported. "
-                "Please run: python -c \"import nltk; nltk.download('punkt'); nltk.download('punkt_tab')\".\n"
+                "Please run: python -c \"import nltk; nltk.download('punkt'); "
+                "nltk.download('punkt_tab')\".\n"
                 f"Original error: {e}"
             )
         summarizer = LsaSummarizer()
