@@ -57,91 +57,86 @@ export default function SummarizeText() {
   };
 
   return (
-    <main style={{ maxWidth: 700, margin: "0 auto", padding: "2em 1em" }}>
-      <h2 style={{ fontWeight: 700, fontSize: "1.4em", color: "#4f46e5", marginBottom: 18 }}>Summarize Text</h2>
-      <form onSubmit={handleSummarize} style={{ marginBottom: 32 }}>
+    <main className="max-w-2xl mx-auto px-4 py-10 animate-fade-in">
+      <h2 className="font-extrabold text-2xl md:text-3xl text-[#4f46e5] mb-6 text-center drop-shadow">Summarize Text</h2>
+      <form onSubmit={handleSummarize} className="mb-8 flex flex-col gap-4 animate-fade-in" autoComplete="on" aria-label="Summarize Text Form">
         <textarea
           value={input}
           onChange={e => setInput(e.target.value)}
-          placeholder={"Paste or type text to summarize…"}
+          placeholder="Paste or type text to summarize…"
           rows={5}
-          style={{ width: "100%", borderRadius: 10, border: "1.5px solid #e0e7ff", padding: 14, fontSize: "1.08em", marginBottom: 12 }}
+          className="w-full rounded-xl border-2 border-[#e0e7ff] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1] bg-[#F9FAFB] text-[#232946] resize-none shadow-sm mb-2"
+          required
         />
-        <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 12 }}>
-          <label style={{ fontWeight: 500 }}>
-            <input type="file" accept=".txt" style={{ display: "none" }} onChange={handleFile} />
-            <span style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, padding: "0.5em 1em", cursor: "pointer" }}>Upload text file</span>
+        <div className="flex gap-3 items-center mb-2 flex-wrap">
+          <label className="font-medium cursor-pointer">
+            <input type="file" accept=".txt" className="hidden" onChange={handleFile} />
+            <span className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg px-4 py-2 font-semibold transition hover:bg-[#c7d2fe]">Upload text file</span>
           </label>
-          <button type="button" onClick={handleSample} style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.5em 1em", fontSize: "1em", border: "none", cursor: "pointer" }}>
-            Summarize sample article
-          </button>
+          <button type="button" onClick={handleSample} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-4 py-2 transition hover:bg-[#c7d2fe]">Summarize sample article</button>
         </div>
-        <div style={{ display: "flex", gap: 18, marginBottom: 12 }}>
-          <label style={{ fontWeight: 500 }}>
+        <div className="flex gap-5 mb-2 flex-wrap">
+          <label className="font-medium flex items-center gap-2">
             Summary length:
-            <select value={length} onChange={e => setLength(e.target.value)} style={{ marginLeft: 8, borderRadius: 5, border: "1px solid #e0e7ff", padding: "0.2em 0.7em" }}>
+            <select value={length} onChange={e => setLength(e.target.value)} className="ml-1 rounded-md border border-[#e0e7ff] px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#6366f1]">
               <option value="short">Short</option>
               <option value="medium">Medium</option>
               <option value="long">Long</option>
             </select>
           </label>
-          <label style={{ fontWeight: 500 }}>
+          <label className="font-medium flex items-center gap-2">
             Tone:
-            <select value={tone} onChange={e => setTone(e.target.value)} style={{ marginLeft: 8, borderRadius: 5, border: "1px solid #e0e7ff", padding: "0.2em 0.7em" }}>
+            <select value={tone} onChange={e => setTone(e.target.value)} className="ml-1 rounded-md border border-[#e0e7ff] px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#6366f1]">
               <option value="simple">Simple</option>
               <option value="technical">Technical</option>
             </select>
           </label>
         </div>
-        <div style={{ display: "flex", gap: 12 }}>
-          <button type="submit" style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.7em 2em", fontSize: "1.08em", border: "none", cursor: "pointer" }}>
-            Summarize
-          </button>
+        <div className="flex gap-3">
+          <button type="submit" className="bg-gradient-to-r from-[#6366f1] to-[#38BDF8] hover:from-[#38BDF8] hover:to-[#6366f1] text-white rounded-lg font-semibold px-8 py-2 shadow-lg transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Summarize</button>
           {showResult && (
-            <button type="button" onClick={handleClear} style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.7em 1.5em", fontSize: "1.08em", border: "none", cursor: "pointer" }}>
-              Clear
-            </button>
+            <button type="button" onClick={handleClear} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-6 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Clear</button>
           )}
         </div>
       </form>
 
       {/* Empty state */}
       {!showResult && !input && (
-        <div style={{ color: "#888", fontSize: "1.08em", background: "#f3f4f6", borderRadius: 10, padding: 18, textAlign: "center" }}>
+        <div className="text-[#888] text-base bg-[#f3f4f6] rounded-xl px-6 py-6 text-center animate-fade-in">
           Paste or upload text to get a summary.
         </div>
       )}
 
       {/* Output */}
       {showResult && summary && (
-        <section style={{ background: "#fff", borderRadius: 12, boxShadow: "0 2px 8px #e0e7ff", padding: 24, marginTop: 8 }}>
-          <h3 style={{ color: "#232946", fontWeight: 700, fontSize: "1.15em", marginBottom: 10 }}>Summary</h3>
-          <ul style={{ marginBottom: 18, color: "#232946" }}>
+        <section className="bg-white rounded-2xl shadow-xl px-8 py-8 mt-2 animate-fade-in">
+          <h3 className="text-[#232946] font-bold text-lg mb-2">Summary</h3>
+          <ul className="mb-5 text-[#232946] list-disc list-inside">
             {summary.map((point, i) => (
               <li key={i}>{point}</li>
             ))}
           </ul>
 
-          <h4 style={{ color: "#6366f1", fontWeight: 600, fontSize: "1.08em", marginBottom: 6 }}>Highlights</h4>
-          <ul style={{ marginBottom: 18, color: "#232946" }}>
+          <h4 className="text-[#6366f1] font-semibold text-base mb-1">Highlights</h4>
+          <ul className="mb-5 text-[#232946] list-disc list-inside">
             {highlights.map((point, i) => (
               <li key={i}>{point}</li>
             ))}
           </ul>
 
-          <h4 style={{ color: "#6366f1", fontWeight: 600, fontSize: "1.08em", marginBottom: 6 }}>Action items</h4>
-          <ul style={{ marginBottom: 18, color: "#232946" }}>
+          <h4 className="text-[#6366f1] font-semibold text-base mb-1">Action items</h4>
+          <ul className="mb-5 text-[#232946] list-disc list-inside">
             {actions.map((point, i) => (
               <li key={i}>{point}</li>
             ))}
           </ul>
 
           {/* Actions */}
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <button style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Save note</button>
-            <button style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Download</button>
-            <button style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Create Flashcards</button>
-            <button style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Quiz me</button>
+          <div className="flex gap-3 flex-wrap mt-4">
+            <button className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Save note</button>
+            <button className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Download</button>
+            <button className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Create Flashcards</button>
+            <button className="bg-gradient-to-r from-[#6366f1] to-[#38BDF8] text-white rounded-lg font-semibold px-5 py-2 shadow-lg transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Quiz me</button>
           </div>
         </section>
       )}
