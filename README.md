@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Crewjah/Crewjah/public/crewjah-logo.jpg" alt="Crewjah Banner" width="120" height="120">
+  <img src="Crewjah/public/crewjah-logo.jpg" alt="Crewjah Banner" width="120" height="120">
 </p>
 
 <p align="center">
