@@ -1,5 +1,8 @@
 "use client";
+
 import { useState } from "react";
+import { Button } from "../../components/ui/button";
+
 
 export default function AskAnything() {
   const [question, setQuestion] = useState("");
@@ -33,63 +36,59 @@ export default function AskAnything() {
   };
 
   return (
-    <main style={{ maxWidth: 700, margin: "0 auto", padding: "2em 1em" }}>
-      <h2 style={{ fontWeight: 700, fontSize: "1.4em", color: "#4f46e5", marginBottom: 18 }}>Ask Anything (Q&amp;A)</h2>
-      <form onSubmit={handleAsk} style={{ marginBottom: 32 }}>
+    <main className="max-w-2xl mx-auto px-4 py-10 animate-fade-in">
+      <h2 className="font-extrabold text-2xl md:text-3xl text-[#4f46e5] mb-6 text-center drop-shadow">Ask Anything (Q&amp;A)</h2>
+      <form onSubmit={handleAsk} className="mb-8 flex flex-col gap-4 animate-fade-in" autoComplete="on" aria-label="Ask Anything Form">
         <textarea
           value={question}
           onChange={e => setQuestion(e.target.value)}
-          placeholder={"Ask a question or paste content…"}
+          placeholder="Ask a question or paste content…"
           rows={4}
-          style={{ width: "100%", borderRadius: 10, border: "1.5px solid #e0e7ff", padding: 14, fontSize: "1.08em", marginBottom: 12 }}
+          className="w-full rounded-xl border-2 border-[#e0e7ff] px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1] bg-[#F9FAFB] text-[#232946] resize-none shadow-sm mb-2"
+          required
         />
-        {/* Model/source selector can be added here later */}
-        <div style={{ display: "flex", gap: 12 }}>
-          <button type="submit" style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.7em 2em", fontSize: "1.08em", border: "none", cursor: "pointer" }}>
-            Ask
-          </button>
+        <div className="flex gap-3">
+          <Button type="submit" size="lg">Ask</Button>
           {showResult && (
-            <button type="button" onClick={handleClear} style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.7em 1.5em", fontSize: "1.08em", border: "none", cursor: "pointer" }}>
-              Clear
-            </button>
+            <Button type="button" onClick={handleClear} variant="outline" size="default">Clear</Button>
           )}
         </div>
       </form>
 
       {/* Empty state */}
       {!showResult && (
-        <div style={{ color: "#888", fontSize: "1.08em", background: "#f3f4f6", borderRadius: 10, padding: 18, textAlign: "center" }}>
+        <div className="text-[#888] text-base bg-[#f3f4f6] rounded-xl px-6 py-6 text-center animate-fade-in">
           Try: <b>‘Explain binary search like I’m 12’</b> or <b>‘Key points from the Paris Agreement’</b>
         </div>
       )}
 
       {/* Output */}
       {showResult && (
-        <section style={{ background: "#fff", borderRadius: 12, boxShadow: "0 2px 8px #e0e7ff", padding: 24, marginTop: 8 }}>
-          <h3 style={{ color: "#232946", fontWeight: 700, fontSize: "1.15em", marginBottom: 10 }}>Answer</h3>
-          <div style={{ marginBottom: 18, color: "#232946" }}>{answer}</div>
+        <section className="bg-white rounded-2xl shadow-xl px-8 py-8 mt-2 animate-fade-in">
+          <h3 className="text-[#232946] font-bold text-lg mb-2">Answer</h3>
+          <div className="mb-5 text-[#232946] text-base leading-relaxed">{answer}</div>
 
-          <h4 style={{ color: "#6366f1", fontWeight: 600, fontSize: "1.08em", marginBottom: 6 }}>Key points</h4>
-          <ul style={{ marginBottom: 18, color: "#232946" }}>
+          <h4 className="text-[#6366f1] font-semibold text-base mb-1">Key points</h4>
+          <ul className="mb-5 text-[#232946] list-disc list-inside">
             {keyPoints.map((point, i) => (
               <li key={i}>{point}</li>
             ))}
           </ul>
 
-          <h4 style={{ color: "#6366f1", fontWeight: 600, fontSize: "1.08em", marginBottom: 6 }}>Related resources</h4>
-          <ul style={{ marginBottom: 18 }}>
+          <h4 className="text-[#6366f1] font-semibold text-base mb-1">Related resources</h4>
+          <ul className="mb-5 list-disc list-inside">
             {resources.map((url, i) => (
-              <li key={i}><a href={url} target="_blank" rel="noopener noreferrer" style={{ color: "#4f46e5" }}>{url}</a></li>
+              <li key={i}><a href={url} target="_blank" rel="noopener noreferrer" className="text-[#4f46e5] underline hover:text-[#6366f1]">{url}</a></li>
             ))}
           </ul>
 
           {/* Actions */}
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <button style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Save as note</button>
-            <button style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Copy</button>
-            <button style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Download</button>
-            <button style={{ background: "#e0e7ff", color: "#4f46e5", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Add to Flashcards</button>
-            <button style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.6em 1.2em", fontSize: "1em", border: "none", cursor: "pointer" }}>Quiz me on this</button>
+          <div className="flex gap-3 flex-wrap mt-4">
+            <Button variant="subtle">Save as note</Button>
+            <Button variant="subtle">Copy</Button>
+            <Button variant="subtle">Download</Button>
+            <Button variant="subtle">Add to Flashcards</Button>
+            <Button>Quiz me on this</Button>
           </div>
         </section>
       )}
