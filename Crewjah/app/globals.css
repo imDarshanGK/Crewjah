@@ -48,9 +48,6 @@ body {
 .animate-fade-in {
   animation: fade-in 0.9s cubic-bezier(0.4,0,0.2,1) both;
 }
-  -moz-osx-font-smoothing: grayscale;
-  transition: background 0.2s, color 0.2s;
-}
 
 * {
   box-sizing: border-box;
