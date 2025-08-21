@@ -1,6 +1,7 @@
 
 "use client";
 
+
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,8 +30,8 @@ export default function AuthPage() {
     } else {
       setError("");
       // Simulate login
-      localStorage.setItem("learnova_logged_in", "1");
-      localStorage.setItem("learnova_email", email);
+      localStorage.setItem("crewjah_logged_in", "1");
+      localStorage.setItem("crewjah_email", email);
       router.push("/dashboard");
     }
   }
@@ -45,9 +46,9 @@ export default function AuthPage() {
       setSignupError("");
       setSignupSuccess(true);
       setTimeout(() => {
-        localStorage.setItem("learnova_logged_in", "1");
-        localStorage.setItem("learnova_name", name);
-        localStorage.setItem("learnova_email", signupEmail);
+        localStorage.setItem("crewjah_logged_in", "1");
+        localStorage.setItem("crewjah_name", name);
+        localStorage.setItem("crewjah_email", signupEmail);
         router.push("/dashboard");
       }, 1200);
     }
@@ -59,72 +60,72 @@ export default function AuthPage() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-[#F9FAFB] px-2">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#f9fafb] to-[#e0e7ff] px-2 animate-fade-in">
       {/* Logo & Welcome */}
-      <div className="flex flex-col items-center mb-6">
-        <Image src="/crewjah-logo.jpg" alt="Crewjah Logo" width={72} height={72} className="rounded-2xl shadow-lg mb-3" />
-        <h1 className="text-3xl md:text-4xl font-extrabold text-[#1E3A8A] mb-1 tracking-tight">Crewjah</h1>
-        <div className="text-[#9333EA] font-semibold text-lg mb-2 animate-typing overflow-hidden whitespace-nowrap border-r-2 border-[#9333EA] pr-2">Welcome back to Crewjah – Your AI-powered learning companion.</div>
+      <div className="flex flex-col items-center mb-8">
+        <Image src="/crewjah-logo.jpg" alt="Crewjah Logo" width={80} height={80} className="rounded-2xl shadow-xl mb-3" priority />
+        <h1 className="text-4xl md:text-5xl font-extrabold text-[#1E3A8A] mb-1 tracking-tight drop-shadow">Crewjah</h1>
+        <div className="text-[#9333EA] font-semibold text-lg mb-2 animate-typing overflow-hidden whitespace-nowrap border-r-2 border-[#9333EA] pr-2 max-w-xs text-center">{isSignIn ? "Welcome back to Crewjah – Your AI-powered learning companion." : "Join Crewjah and unlock your learning potential!"}</div>
       </div>
 
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 md:p-10 mb-4 border border-[#E0E7FF]">
+      <div className="w-full max-w-md bg-white/90 backdrop-blur rounded-2xl shadow-2xl p-8 md:p-10 mb-4 border border-[#E0E7FF] transition-all duration-300">
         {/* Toggle Sign In/Up */}
-        <div className="flex justify-center gap-4 mb-6">
-          <button onClick={() => setIsSignIn(true)} className={`px-6 py-2 rounded-lg font-semibold text-base transition-all duration-150 ${isSignIn ? 'bg-[#1E3A8A] text-white shadow' : 'bg-[#E0E7FF] text-[#1E3A8A]'}`}>Sign In</button>
-          <button onClick={() => setIsSignIn(false)} className={`px-6 py-2 rounded-lg font-semibold text-base transition-all duration-150 ${!isSignIn ? 'bg-[#1E3A8A] text-white shadow' : 'bg-[#E0E7FF] text-[#1E3A8A]'}`}>Sign Up</button>
+        <div className="flex justify-center gap-4 mb-8">
+          <button
+            onClick={() => setIsSignIn(true)}
+            className={`px-6 py-2 rounded-lg font-semibold text-base transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#38BDF8] ${isSignIn ? 'bg-[#1E3A8A] text-white shadow-lg scale-105' : 'bg-[#E0E7FF] text-[#1E3A8A] hover:bg-[#c7d2fe]'}`}
+            aria-pressed={isSignIn}
+          >Sign In</button>
+          <button
+            onClick={() => setIsSignIn(false)}
+            className={`px-6 py-2 rounded-lg font-semibold text-base transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#38BDF8] ${!isSignIn ? 'bg-[#1E3A8A] text-white shadow-lg scale-105' : 'bg-[#E0E7FF] text-[#1E3A8A] hover:bg-[#c7d2fe]'}`}
+            aria-pressed={!isSignIn}
+          >Sign Up</button>
         </div>
+
+  {/* Social sign-in buttons removed for a cleaner UI */}
 
         {/* Divider */}
-        <div style={{ display: "flex", alignItems: "center", margin: "18px 0" }}>
-          <div style={{ flex: 1, height: 1, background: "#e0e7ff" }} />
-          <span style={{ margin: "0 12px", color: "#a5b4fc", fontWeight: 600, fontSize: "1em" }}>OR</span>
-          <div style={{ flex: 1, height: 1, background: "#e0e7ff" }} />
-        </div>
-
-        {/* Social sign-in buttons */}
-        <div className="flex flex-col gap-3 mb-6">
-          <button onClick={() => handleSocial('Google')} className="flex items-center justify-center gap-2 bg-white border border-[#E0E7FF] rounded-lg font-semibold py-2 text-[#111827] hover:shadow transition">
-            <img src="/google.svg" alt="Google" width={20} height={20} className="mr-1" /> Continue with Google
-          </button>
-          <button onClick={() => handleSocial('GitHub')} className="flex items-center justify-center gap-2 bg-white border border-[#E0E7FF] rounded-lg font-semibold py-2 text-[#111827] hover:shadow transition">
-            <img src="/github.svg" alt="GitHub" width={20} height={20} className="mr-1" /> Continue with GitHub
-          </button>
-        </div>
-
-        {/* Divider */}
-        <div style={{ display: "flex", alignItems: "center", margin: "18px 0" }}>
-          <div style={{ flex: 1, height: 1, background: "#e0e7ff" }} />
-          <span style={{ margin: "0 12px", color: "#a5b4fc", fontWeight: 600, fontSize: "1em" }}>{isSignIn ? "Sign In" : "Sign Up"}</span>
-          <div style={{ flex: 1, height: 1, background: "#e0e7ff" }} />
+        <div className="flex items-center my-6">
+          <div className="flex-1 h-px bg-[#e0e7ff]" />
+          <span className="mx-3 text-[#a5b4fc] font-semibold text-base">{isSignIn ? "Sign In" : "Sign Up"}</span>
+          <div className="flex-1 h-px bg-[#e0e7ff]" />
         </div>
 
         {/* Sign In Form */}
         {isSignIn && (
-          <form onSubmit={handleSignIn} className="flex flex-col gap-4">
-            <input
-              type="email"
-              placeholder="Email or Username"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              className="border border-[#1E3A8A] rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#38BDF8] bg-[#F9FAFB] text-[#111827]"
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              className="border border-[#1E3A8A] rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#38BDF8] bg-[#F9FAFB] text-[#111827]"
-              required
-            />
+          <form onSubmit={handleSignIn} className="flex flex-col gap-5 animate-fade-in" autoComplete="on" aria-label="Sign In Form">
+            <label className="flex flex-col gap-1 text-[#1E3A8A] font-medium">
+              Email or Username
+              <input
+                type="email"
+                placeholder="Enter your email or username"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                className="border border-[#1E3A8A] rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#38BDF8] bg-[#F9FAFB] text-[#111827]"
+                required
+                autoFocus
+              />
+            </label>
+            <label className="flex flex-col gap-1 text-[#1E3A8A] font-medium">
+              Password
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                className="border border-[#1E3A8A] rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#38BDF8] bg-[#F9FAFB] text-[#111827]"
+                required
+              />
+            </label>
             <div className="flex items-center justify-between">
-              <label className="text-sm text-[#1E3A8A]">
-                <input type="checkbox" checked={remember} onChange={e => setRemember(e.target.checked)} className="mr-2" /> Remember Me
+              <label className="text-sm text-[#1E3A8A] flex items-center gap-2">
+                <input type="checkbox" checked={remember} onChange={e => setRemember(e.target.checked)} className="accent-[#1E3A8A]" /> Remember Me
               </label>
-              <Link href="/forgot-password" className="text-sm text-[#9333EA] hover:underline">Forgot Password?</Link>
+              <Link href="/forgot-password" className="text-sm text-[#9333EA] hover:underline focus:underline">Forgot Password?</Link>
             </div>
-            {error && <div className="text-[#e11d48] text-sm mt-[-8px]">{error}</div>}
-            <button type="submit" className="w-full bg-[#1E3A8A] hover:bg-[#38BDF8] text-white font-semibold py-3 rounded-xl shadow-md transition text-lg mb-2">Sign In</button>
+            {error && <div className="text-[#e11d48] text-sm -mt-2">{error}</div>}
+            <button type="submit" className="w-full bg-gradient-to-r from-[#1E3A8A] to-[#38BDF8] hover:from-[#38BDF8] hover:to-[#1E3A8A] text-white font-semibold py-3 rounded-xl shadow-lg transition text-lg mb-2 focus:outline-none focus:ring-2 focus:ring-[#38BDF8]">Sign In</button>
             <div className="text-center mt-2 text-xs text-[#6B7280]">
               By signing in, you agree to our <Link href="/terms" className="text-[#9333EA] hover:underline">Terms</Link> & <Link href="/privacy" className="text-[#9333EA] hover:underline">Privacy</Link>.
             </div>
@@ -133,54 +134,66 @@ export default function AuthPage() {
 
         {/* Sign Up Form */}
         {!isSignIn && (
-          <form onSubmit={handleSignUp} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            <input
-              type="text"
-              placeholder="Full Name"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              style={{ padding: 12, borderRadius: 7, border: "1.5px solid #6366f1", fontSize: "1.08em" }}
-              required
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              value={signupEmail}
-              onChange={e => setSignupEmail(e.target.value)}
-              style={{ padding: 12, borderRadius: 7, border: "1.5px solid #6366f1", fontSize: "1.08em" }}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={signupPassword}
-              onChange={e => setSignupPassword(e.target.value)}
-              style={{ padding: 12, borderRadius: 7, border: "1.5px solid #6366f1", fontSize: "1.08em" }}
-              required
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              value={confirm}
-              onChange={e => setConfirm(e.target.value)}
-              style={{ padding: 12, borderRadius: 7, border: "1.5px solid #6366f1", fontSize: "1.08em" }}
-              required
-            />
-            {signupError && <div style={{ color: "#e11d48", fontSize: "0.98em", marginTop: -10 }}>{signupError}</div>}
-            {signupSuccess && <div style={{ color: "#16a34a", fontSize: "1.05em", marginTop: -10, textAlign: "center" }}>Account created! Redirecting…</div>}
-            <button type="submit" style={{ background: "#6366f1", color: "#fff", borderRadius: 7, fontWeight: 600, padding: "0.7em 0", fontSize: "1.08em", border: "none", cursor: "pointer" }}>Sign Up</button>
+          <form onSubmit={handleSignUp} className="flex flex-col gap-5 animate-fade-in" autoComplete="on" aria-label="Sign Up Form">
+            <label className="flex flex-col gap-1 text-[#1E3A8A] font-medium">
+              Full Name
+              <input
+                type="text"
+                placeholder="Enter your full name"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                className="border border-[#6366f1] rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#38BDF8] bg-[#F9FAFB] text-[#111827]"
+                required
+              />
+            </label>
+            <label className="flex flex-col gap-1 text-[#1E3A8A] font-medium">
+              Email
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={signupEmail}
+                onChange={e => setSignupEmail(e.target.value)}
+                className="border border-[#6366f1] rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#38BDF8] bg-[#F9FAFB] text-[#111827]"
+                required
+              />
+            </label>
+            <label className="flex flex-col gap-1 text-[#1E3A8A] font-medium">
+              Password
+              <input
+                type="password"
+                placeholder="Create a password"
+                value={signupPassword}
+                onChange={e => setSignupPassword(e.target.value)}
+                className="border border-[#6366f1] rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#38BDF8] bg-[#F9FAFB] text-[#111827]"
+                required
+              />
+            </label>
+            <label className="flex flex-col gap-1 text-[#1E3A8A] font-medium">
+              Confirm Password
+              <input
+                type="password"
+                placeholder="Confirm your password"
+                value={confirm}
+                onChange={e => setConfirm(e.target.value)}
+                className="border border-[#6366f1] rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#38BDF8] bg-[#F9FAFB] text-[#111827]"
+                required
+              />
+            </label>
+            {signupError && <div className="text-[#e11d48] text-sm -mt-2">{signupError}</div>}
+            {signupSuccess && <div className="text-[#16a34a] text-base -mt-2 text-center animate-fade-in">Account created! Redirecting…</div>}
+            <button type="submit" className="w-full bg-gradient-to-r from-[#6366f1] to-[#9333EA] hover:from-[#9333EA] hover:to-[#6366f1] text-white font-semibold py-3 rounded-xl shadow-lg transition text-lg focus:outline-none focus:ring-2 focus:ring-[#38BDF8]">Sign Up</button>
           </form>
         )}
 
         {/* New User Section */}
-        <div className="text-center text-base mt-6">
+        <div className="text-center text-base mt-8">
           {isSignIn ? (
             <>
-              <span className="text-[#111827]">Don’t have an account?</span> <span className="text-[#9333EA] font-semibold cursor-pointer hover:underline" onClick={() => setIsSignIn(false)}>Sign Up</span>
+              <span className="text-[#111827]">Don’t have an account?</span> <button type="button" className="text-[#9333EA] font-semibold cursor-pointer hover:underline focus:underline bg-transparent border-none ml-1" onClick={() => setIsSignIn(false)}>Sign Up</button>
             </>
           ) : (
             <>
-              <span className="text-[#111827]">Already have an account?</span> <span className="text-[#9333EA] font-semibold cursor-pointer hover:underline" onClick={() => setIsSignIn(true)}>Sign In</span>
+              <span className="text-[#111827]">Already have an account?</span> <button type="button" className="text-[#9333EA] font-semibold cursor-pointer hover:underline focus:underline bg-transparent border-none ml-1" onClick={() => setIsSignIn(true)}>Sign In</button>
             </>
           )}
         </div>
@@ -192,6 +205,6 @@ export default function AuthPage() {
         <span className="mx-1">|</span>
         <Link href="/terms" className="hover:underline ml-2">Terms of Service</Link>
       </footer>
-  </main>
+    </main>
   );
 }
