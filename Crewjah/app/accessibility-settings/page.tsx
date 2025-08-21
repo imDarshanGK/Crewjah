@@ -19,49 +19,49 @@ export default function AccessibilitySettings() {
   const [highContrast, setHighContrast] = useState(false);
 
   return (
-    <main style={{ maxWidth: 600, margin: "0 auto", padding: "2em 1em" }}>
-      <h2 style={{ fontWeight: 700, fontSize: "1.4em", color: "#4f46e5", marginBottom: 18 }}>Accessibility Settings</h2>
-      <section style={{ background: "#fff", borderRadius: 12, boxShadow: "0 2px 8px #e0e7ff", padding: 24, marginTop: 8, marginBottom: 32 }}>
-        <div style={{ marginBottom: 18 }}>
-          <label style={{ fontWeight: 500, marginRight: 18 }}>
-            <input type="checkbox" checked={darkMode} onChange={e => setDarkMode(e.target.checked)} style={{ marginRight: 8 }} />
+    <main className="max-w-xl mx-auto px-4 py-10 animate-fade-in">
+      <h2 className="font-extrabold text-2xl md:text-3xl text-[#4f46e5] mb-6 text-center drop-shadow">Accessibility Settings</h2>
+      <section className="bg-white rounded-2xl shadow-xl px-8 py-8 mt-2 mb-8 animate-fade-in">
+        <div className="flex flex-wrap gap-6 mb-4">
+          <label className="flex items-center font-medium gap-2 cursor-pointer">
+            <input type="checkbox" checked={darkMode} onChange={e => setDarkMode(e.target.checked)} className="accent-[#6366f1] w-5 h-5" />
             Dark mode
           </label>
-          <label style={{ fontWeight: 500, marginRight: 18 }}>
+          <label className="flex items-center font-medium gap-2 cursor-pointer">
             Font size:
-            <select value={fontSize} onChange={e => setFontSize(e.target.value)} style={{ marginLeft: 8, borderRadius: 5, border: "1px solid #e0e7ff", padding: "0.2em 0.7em" }}>
+            <select value={fontSize} onChange={e => setFontSize(e.target.value)} className="ml-1 rounded border border-[#e0e7ff] px-3 py-1 focus:outline-none focus:ring-2 focus:ring-[#6366f1]">
               {fontSizes.map(size => <option key={size} value={size}>{size}</option>)}
             </select>
           </label>
-          <label style={{ fontWeight: 500, marginRight: 18 }}>
-            <input type="checkbox" checked={dyslexiaFont} onChange={e => setDyslexiaFont(e.target.checked)} style={{ marginRight: 8 }} />
+          <label className="flex items-center font-medium gap-2 cursor-pointer">
+            <input type="checkbox" checked={dyslexiaFont} onChange={e => setDyslexiaFont(e.target.checked)} className="accent-[#6366f1] w-5 h-5" />
             Dyslexia-friendly font
           </label>
-          <label style={{ fontWeight: 500, marginRight: 18 }}>
-            <input type="checkbox" checked={tts} onChange={e => setTts(e.target.checked)} style={{ marginRight: 8 }} />
+          <label className="flex items-center font-medium gap-2 cursor-pointer">
+            <input type="checkbox" checked={tts} onChange={e => setTts(e.target.checked)} className="accent-[#6366f1] w-5 h-5" />
             Text-to-Speech (TTS)
           </label>
           {tts && (
-            <label style={{ fontWeight: 500, marginLeft: 12 }}>
+            <label className="flex items-center font-medium gap-2 ml-2 cursor-pointer">
               Voice rate:
-              <select value={voiceRate} onChange={e => setVoiceRate(e.target.value)} style={{ marginLeft: 8, borderRadius: 5, border: "1px solid #e0e7ff", padding: "0.2em 0.7em" }}>
+              <select value={voiceRate} onChange={e => setVoiceRate(e.target.value)} className="ml-1 rounded border border-[#e0e7ff] px-3 py-1 focus:outline-none focus:ring-2 focus:ring-[#6366f1]">
                 {voices.map(v => <option key={v} value={v}>{v}</option>)}
               </select>
             </label>
           )}
-          <label style={{ fontWeight: 500, marginRight: 18, marginLeft: 12 }}>
-            <input type="checkbox" checked={highContrast} onChange={e => setHighContrast(e.target.checked)} style={{ marginRight: 8 }} />
+          <label className="flex items-center font-medium gap-2 ml-2 cursor-pointer">
+            <input type="checkbox" checked={highContrast} onChange={e => setHighContrast(e.target.checked)} className="accent-[#6366f1] w-5 h-5" />
             High contrast mode
           </label>
         </div>
       </section>
-      <section style={{ background: "#f3f4f6", borderRadius: 12, padding: 24 }}>
-        <h3 style={{ color: "#232946", fontWeight: 700, fontSize: "1.15em", marginBottom: 10 }}>Keyboard Shortcuts</h3>
+      <section className="bg-[#f3f4f6] rounded-2xl px-8 py-8 animate-fade-in">
+        <h3 className="text-[#232946] font-bold text-lg mb-3">Keyboard Shortcuts</h3>
         <ul>
           {shortcuts.map(s => (
-            <li key={s.key} style={{ marginBottom: 6 }}>
-              <span style={{ fontWeight: 600, color: "#6366f1", marginRight: 10 }}>{s.key}</span>
-              <span>{s.desc}</span>
+            <li key={s.key} className="mb-2 flex items-center">
+              <span className="font-semibold text-[#6366f1] mr-3 bg-[#e0e7ff] px-3 py-1 rounded shadow-sm">{s.key}</span>
+              <span className="text-[#232946]">{s.desc}</span>
             </li>
           ))}
         </ul>
