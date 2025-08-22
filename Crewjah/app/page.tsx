@@ -1,8 +1,10 @@
 
 "use client";
 
+
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "../components/ui/button";
 
 
 
@@ -23,30 +25,22 @@ export default function Home() {
           <span className="text-2xl font-extrabold text-blue-900 tracking-tight">Crewjah</span>
         </nav>
         <nav className="flex items-center gap-5">
-          <Link href="/signin">
-            <button className="px-6 py-2 rounded-xl font-bold text-blue-700 bg-white border-2 border-blue-600 shadow hover:bg-blue-50 hover:text-blue-800 transition focus:outline-none focus:ring-2 focus:ring-blue-400 text-base">Sign In</button>
-          </Link>
-          <Link href="/signup">
-            <button className="px-6 py-2 rounded-xl font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-500 shadow-lg hover:from-blue-700 hover:to-indigo-600 hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-blue-400 text-base">Sign up Free</button>
-          </Link>
+              <Link href="/signin">
+                <Button size="default">Sign In</Button>
+              </Link>
+              <Link href="/signup">
+                <Button size="default">Sign up Free</Button>
+              </Link>
         </nav>
       </header>
 
       {/* Hero Section */}
       <section className="flex-1 flex flex-col items-center justify-center px-4 py-12 w-full">
-        <div className="max-w-2xl w-full text-center mb-8 animate-fade-in">
+        <div className="max-w-2xl w-full text-center mb-10 animate-fade-in">
           <h1 className="text-4xl md:text-5xl font-extrabold text-blue-900 mb-3 drop-shadow">Learn smarter with AI</h1>
-          <p className="text-gray-700 mb-8 text-lg md:text-xl font-medium">
-            Your all-in-one study assistant — ask anything, summarize notes & code, and track progress.
+          <p className="text-gray-700 mb-7 text-lg md:text-xl font-medium">
+            Your all-in-one study assistant. Ask anything, summarize notes & code, and track progress.
           </p>
-          <div className="flex flex-col md:flex-row justify-center gap-4 mb-6">
-            <Link href="/signup">
-              <button className="bg-gradient-to-r from-blue-600 to-indigo-500 hover:from-blue-700 hover:to-indigo-600 text-white font-bold px-8 py-3 rounded-xl shadow-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 text-lg">Get Started — Free</button>
-            </Link>
-            <Link href="/signin">
-              <button className="bg-white border-2 border-blue-600 text-blue-700 font-bold px-8 py-3 rounded-xl shadow hover:bg-blue-50 transition text-lg">Sign In</button>
-            </Link>
-          </div>
           <div className="flex flex-wrap justify-center gap-3 text-xs text-gray-500 mb-6">
             <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 rounded-full border border-blue-100 font-semibold">Privacy-first</span>
             <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 rounded-full border border-blue-100 font-semibold">No ads</span>
@@ -80,34 +74,33 @@ export default function Home() {
           </div>
         </section>
 
-        {/* How it works */}
-        <section className="max-w-xl w-full text-center mb-12 animate-fade-in">
-          <h2 className="font-semibold text-blue-800 mb-2 text-lg">How it works</h2>
-          <ol className="text-base text-gray-600 list-decimal list-inside space-y-1">
-            <li>Paste text or pick a topic</li>
-            <li>Get summary, resources & practice</li>
-            <li>Track progress over time</li>
-          </ol>
+        {/* How it works - improved stepper */}
+        <section className="max-w-2xl w-full text-center mb-12 animate-fade-in">
+          <h2 className="font-semibold text-blue-800 mb-4 text-lg">How it works</h2>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
+            <div className="flex flex-col items-center">
+              <span className="bg-blue-100 text-blue-700 rounded-full p-3 mb-2">
+                <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path stroke="#4f46e5" strokeWidth="2" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+              <span className="font-medium text-gray-700">Paste text or pick a topic</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="bg-blue-100 text-blue-700 rounded-full p-3 mb-2">
+                <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#4f46e5" strokeWidth="2"/><path stroke="#4f46e5" strokeWidth="2" d="M8 12h8M12 8v8"/></svg>
+              </span>
+              <span className="font-medium text-gray-700">Get summary, resources & practice</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="bg-blue-100 text-blue-700 rounded-full p-3 mb-2">
+                <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4" stroke="#4f46e5" strokeWidth="2"/><path stroke="#4f46e5" strokeWidth="2" d="M8 16l4-4 4 4"/></svg>
+              </span>
+              <span className="font-medium text-gray-700">Track progress over time</span>
+            </div>
+          </div>
         </section>
       </section>
 
-      {/* Footer */}
-      <footer className="w-full text-center text-xs text-gray-400 py-6 border-t bg-blue-50 animate-fade-in">
-        <div className="mb-2">© 2025 Crewjah. All rights reserved.</div>
-        <nav className="flex flex-wrap justify-center gap-3">
-          <Link href="/docs" className="hover:underline">Docs</Link>
-          <span>·</span>
-          <Link href="/issues" className="hover:underline">Issues</Link>
-          <span>·</span>
-          <Link href="/contribute" className="hover:underline">Contribute</Link>
-          <span>·</span>
-          <Link href="/privacy" className="hover:underline">Privacy</Link>
-          <span>·</span>
-          <Link href="/terms" className="hover:underline">Terms</Link>
-          <span>·</span>
-          <Link href="/contact" className="hover:underline">Contact</Link>
-        </nav>
-      </footer>
+      {/* Footer removed: now only rendered from layout.tsx to avoid duplication */}
     </main>
   );
 }
