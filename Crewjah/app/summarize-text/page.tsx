@@ -1,5 +1,7 @@
 "use client";
+
 import { useState } from "react";
+import { Button } from "../../components/ui/button";
 
 export default function SummarizeText() {
   const [input, setInput] = useState("");
@@ -73,7 +75,7 @@ export default function SummarizeText() {
             <input type="file" accept=".txt" className="hidden" onChange={handleFile} />
             <span className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg px-4 py-2 font-semibold transition hover:bg-[#c7d2fe]">Upload text file</span>
           </label>
-          <button type="button" onClick={handleSample} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-4 py-2 transition hover:bg-[#c7d2fe]">Summarize sample article</button>
+          <Button type="button" onClick={handleSample} variant="subtle">Summarize sample article</Button>
         </div>
         <div className="flex gap-5 mb-2 flex-wrap">
           <label className="font-medium flex items-center gap-2">
@@ -93,9 +95,9 @@ export default function SummarizeText() {
           </label>
         </div>
         <div className="flex gap-3">
-          <button type="submit" className="bg-gradient-to-r from-[#6366f1] to-[#38BDF8] hover:from-[#38BDF8] hover:to-[#6366f1] text-white rounded-lg font-semibold px-8 py-2 shadow-lg transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Summarize</button>
+          <Button type="submit" size="lg">Summarize</Button>
           {showResult && (
-            <button type="button" onClick={handleClear} className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-6 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Clear</button>
+            <Button type="button" onClick={handleClear} variant="outline">Clear</Button>
           )}
         </div>
       </form>
@@ -133,10 +135,10 @@ export default function SummarizeText() {
 
           {/* Actions */}
           <div className="flex gap-3 flex-wrap mt-4">
-            <button className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Save note</button>
-            <button className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Download</button>
-            <button className="bg-[#e0e7ff] text-[#4f46e5] rounded-lg font-semibold px-5 py-2 shadow transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Create Flashcards</button>
-            <button className="bg-gradient-to-r from-[#6366f1] to-[#38BDF8] text-white rounded-lg font-semibold px-5 py-2 shadow-lg transition text-base focus:outline-none focus:ring-2 focus:ring-[#6366f1]">Quiz me</button>
+            <Button variant="subtle">Save note</Button>
+            <Button variant="subtle">Download</Button>
+            <Button variant="subtle">Create Flashcards</Button>
+            <Button>Quiz me</Button>
           </div>
         </section>
       )}
