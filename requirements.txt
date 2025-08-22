@@ -1,9 +1,8 @@
-transformers==4.55.2
-sumy==0.11.0
-pyttsx3==2.99
-gTTS==2.5.4
-requests==2.32.4
-streamlit==1.48.1
-python-dotenv==1.1.1
-rich==14.1.0
-nltk==3.9.1
+transformers
+sumy
+pyttsx3
+gtts
+requests
+streamlit
+python-dotenv
+rich>=13.0.0
