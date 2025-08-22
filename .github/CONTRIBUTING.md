@@ -1,16 +1,18 @@
-# 🧑‍💻 Contributing to SmartStudyBot
 
-Thank you for considering contributing to **SmartStudyBot**! 🙌  
+# 🧑‍💻 Contributing to Crewjah
+
+Thank you for considering contributing to **Crewjah**! 🙌  
 We welcome beginner-friendly contributions, bug fixes, new features, and documentation improvements.
 
 ---
 
 ## 📌 Guidelines
 
+
 ### 1. 🔧 Fork and Clone the Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/SmartStudyBot.git
-cd SmartStudyBot
+git clone https://github.com/YOUR_USERNAME/Crewjah.git
+cd Crewjah
 ```
 
 ### 2. 🌱 Create a New Branch
@@ -18,15 +20,25 @@ cd SmartStudyBot
 git checkout -b feature-name
 ```
 
+
 ### 3. 💻 Make Your Changes
-- Follow Python best practices (PEP8)
+- Follow Python (PEP8) and TypeScript/React best practices
 - Use meaningful commit messages
 - Keep code modular and reusable
 
+
 ### 4. ✅ Test Your Code
 Make sure your changes run smoothly:
+
+**Backend:**
 ```bash
-python main.py
+uvicorn api.main:app --reload
+```
+
+**Frontend:**
+```bash
+cd Crewjah
+npm run dev
 ```
 
 ### 5. 📤 Push and Submit a Pull Request
@@ -35,6 +47,7 @@ git add .
 git commit -m "Your descriptive commit message"
 git push origin feature-name
 ```
+
 
 Then open a Pull Request (PR) to the `main` branch.
 
@@ -52,6 +65,7 @@ Then open a Pull Request (PR) to the `main` branch.
 ---
 
 ## 🙌 Need Help?
+
 
 If you're stuck, open an issue or ask in your PR.  
 We're happy to help you learn and grow. 💙
