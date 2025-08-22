@@ -29,9 +29,14 @@ export default function AuthPage() {
       setError("Please enter both email and password.");
     } else {
       setError("");
-      // Simulate login
-      localStorage.setItem("crewjah_logged_in", "1");
-      localStorage.setItem("crewjah_email", email);
+      // Simulate login with Remember Me
+      if (remember) {
+        localStorage.setItem("crewjah_logged_in", "1");
+        localStorage.setItem("crewjah_email", email);
+      } else {
+        sessionStorage.setItem("crewjah_logged_in", "1");
+        sessionStorage.setItem("crewjah_email", email);
+      }
       router.push("/dashboard");
     }
   }
@@ -65,7 +70,7 @@ export default function AuthPage() {
       <div className="flex flex-col items-center mb-8">
         <Image src="/crewjah-logo.jpg" alt="Crewjah Logo" width={80} height={80} className="rounded-2xl shadow-xl mb-3" priority />
         <h1 className="text-4xl md:text-5xl font-extrabold text-[#1E3A8A] mb-1 tracking-tight drop-shadow">Crewjah</h1>
-        <div className="text-[#9333EA] font-semibold text-lg mb-2 animate-typing overflow-hidden whitespace-nowrap border-r-2 border-[#9333EA] pr-2 max-w-xs text-center">{isSignIn ? "Welcome back to Crewjah – Your AI-powered learning companion." : "Join Crewjah and unlock your learning potential!"}</div>
+  <div className="text-[#9333EA] font-semibold text-lg mb-2 animate-typing overflow-hidden whitespace-nowrap border-r-2 border-[#9333EA] pr-2 max-w-xs text-center">{isSignIn ? "Welcome back! Sign in to continue." : "Join Crewjah and start learning!"}</div>
       </div>
 
       <div className="w-full max-w-md bg-white/90 backdrop-blur rounded-2xl shadow-2xl p-8 md:p-10 mb-4 border border-[#E0E7FF] transition-all duration-300">
@@ -199,12 +204,7 @@ export default function AuthPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="text-center text-xs text-[#6B7280] mt-8">
-        <Link href="/privacy" className="hover:underline mr-2">Privacy Policy</Link>
-        <span className="mx-1">|</span>
-        <Link href="/terms" className="hover:underline ml-2">Terms of Service</Link>
-      </footer>
+  {/* Footer removed: now only rendered globally for consistency */}
     </main>
   );
 }
