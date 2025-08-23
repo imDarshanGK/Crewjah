@@ -18,48 +18,47 @@ export default function Header() {
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-        <img
-          src="/crewjah-logo.jpg"
-          alt="Crewjah Logo"
-          style={{ width: 36, height: 36, borderRadius: 8, background: darkMode ? "#232946" : "#e0e7ff", boxShadow: darkMode ? "0 2px 8px #232946" : "0 2px 8px #b3bcf6" }}
-          onError={e => (e.currentTarget.style.display = "none")}
-        />
-        <span style={{ fontWeight: 700, fontSize: "1.22em", color: darkMode ? "#a5b4fc" : "#4f46e5", letterSpacing: 1 }}>Crewjah</span>
-      </div>
-      <nav style={{ display: "flex", alignItems: "center", gap: 24 }}>
-        <a href="/dashboard" style={{ color: darkMode ? "#e0e7ff" : "#232946", fontWeight: 600, textDecoration: "none" }}>Dashboard</a>
-        <div style={{ position: "relative" }} ref={dropdownRef}>
-          <span
-            style={{ color: darkMode ? "#e0e7ff" : "#232946", fontWeight: 600, cursor: "pointer", userSelect: "none" }}
-            onClick={() => setShowDropdown((v) => !v)}
-            tabIndex={0}
-            onKeyDown={e => { if (e.key === "Enter" || e.key === " ") setShowDropdown(v => !v); }}
-            aria-haspopup="true"
-            aria-expanded={showDropdown}
-          >
-            Features ▾
-          </span>
-          {showDropdown && (
-            <div
-              style={{
-                position: "absolute",
-                top: "2.2em",
-                left: 0,
-                background: darkMode ? "#232946" : "#fff",
-                border: darkMode ? "1.5px solid #6366f1" : "1.5px solid #e0e7ff",
-                borderRadius: 8,
-                boxShadow: "0 2px 12px #e0e7ff",
-                minWidth: 180,
-                zIndex: 1000,
-                padding: "0.5em 0"
-              }}
+    return (
+      <>
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <img
+            src="/crewjah-logo.jpg"
+            alt="Crewjah Logo"
+            style={{ width: 36, height: 36, borderRadius: 8, background: darkMode ? "#232946" : "#e0e7ff", boxShadow: darkMode ? "0 2px 8px #232946" : "0 2px 8px #b3bcf6" }}
+            onError={e => (e.currentTarget.style.display = "none")}
+          />
+          <span style={{ fontWeight: 700, fontSize: "1.22em", color: darkMode ? "#a5b4fc" : "#4f46e5", letterSpacing: 1 }}>Crewjah</span>
+        </div>
+        <nav style={{ display: "flex", alignItems: "center", gap: 24 }}>
+          <a href="/dashboard" style={{ color: darkMode ? "#e0e7ff" : "#232946", fontWeight: 600, textDecoration: "none" }}>Dashboard</a>
+          <div style={{ position: "relative" }} ref={dropdownRef}>
+            <span
+              style={{ color: darkMode ? "#e0e7ff" : "#232946", fontWeight: 600, cursor: "pointer", userSelect: "none" }}
+              onClick={() => setShowDropdown((v) => !v)}
+              tabIndex={0}
+              onKeyDown={e => { if (e.key === "Enter" || e.key === " ") setShowDropdown(v => !v); }}
+              aria-haspopup="true"
+              aria-expanded={showDropdown}
             >
-              <a href="/ask-anything" style={{ display: "block", padding: "0.7em 1.2em", color: darkMode ? "#a5b4fc" : "#4f46e5", textDecoration: "none", fontWeight: 500 }}>AI Q&A</a>
-              <a href="/summarize-text" style={{ display: "block", padding: "0.7em 1.2em", color: darkMode ? "#a5b4fc" : "#4f46e5", textDecoration: "none", fontWeight: 500 }}>Summarize Text</a>
+              Features ▾
+            </span>
+            {showDropdown && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "2.2em",
+                  left: 0,
+                  background: darkMode ? "#232946" : "#fff",
+                  border: darkMode ? "1.5px solid #6366f1" : "1.5px solid #e0e7ff",
+                  borderRadius: 8,
+                  boxShadow: "0 2px 12px #e0e7ff",
+                  minWidth: 180,
+                  zIndex: 1000,
+                  padding: "0.5em 0"
+                }}
+              >
+                <a href="/ask-anything" style={{ display: "block", padding: "0.7em 1.2em", color: darkMode ? "#a5b4fc" : "#4f46e5", textDecoration: "none", fontWeight: 500 }}>AI Q&A</a>
+                <a href="/summarize-text" style={{ display: "block", padding: "0.7em 1.2em", color: darkMode ? "#a5b4fc" : "#4f46e5", textDecoration: "none", fontWeight: 500 }}>Summarize Text</a>
               <a href="/summarize-code" style={{ display: "block", padding: "0.7em 1.2em", color: darkMode ? "#a5b4fc" : "#4f46e5", textDecoration: "none", fontWeight: 500 }}>Summarize Code</a>
               <a href="/take-quiz" style={{ display: "block", padding: "0.7em 1.2em", color: darkMode ? "#a5b4fc" : "#4f46e5", textDecoration: "none", fontWeight: 500 }}>Quiz & Flashcards</a>
               <a href="/study-planner" style={{ display: "block", padding: "0.7em 1.2em", color: darkMode ? "#a5b4fc" : "#4f46e5", textDecoration: "none", fontWeight: 500 }}>Study Planner</a>
