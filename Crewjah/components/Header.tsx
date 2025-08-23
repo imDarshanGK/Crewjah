@@ -20,9 +20,7 @@ export default function Header() {
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-    };
-    <header
-      style={{
+    );
         width: "100%",
         background: darkMode ? "#18181b" : "#fff",
         borderBottom: darkMode ? "1.5px solid #232946" : "1.5px solid #e0e7ff",
