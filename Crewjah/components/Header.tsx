@@ -24,7 +24,21 @@ export default function Header() {
   }, [showDropdown]);
 
   return (
-    <>
+    <header
+      style={{
+        width: "100%",
+        background: darkMode ? "#18181b" : "#fff",
+        borderBottom: darkMode ? "1.5px solid #232946" : "1.5px solid #e0e7ff",
+        padding: "0.7em 2em",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        position: "sticky",
+        top: 0,
+        zIndex: 100,
+        transition: "background 0.2s, border 0.2s"
+      }}
+    >
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
         <img
           src="/crewjah-logo.jpg"
