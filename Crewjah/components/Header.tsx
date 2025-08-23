@@ -20,14 +20,7 @@ export default function Header() {
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-    );
-        width: "100%",
-        background: darkMode ? "#18181b" : "#fff",
-        borderBottom: darkMode ? "1.5px solid #232946" : "1.5px solid #e0e7ff",
-        padding: "0.7em 2em",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
+    };
         position: "sticky",
         top: 0,
         zIndex: 100,
