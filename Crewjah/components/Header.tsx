@@ -20,8 +20,7 @@ export default function Header() {
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showDropdown]);
+  };
 
   return (
     <header
