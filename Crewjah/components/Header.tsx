@@ -21,12 +21,6 @@ export default function Header() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-        position: "sticky",
-        top: 0,
-        zIndex: 100,
-        transition: "background 0.2s, border 0.2s"
-      }}
-    >
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
         <img
           src="/crewjah-logo.jpg"
