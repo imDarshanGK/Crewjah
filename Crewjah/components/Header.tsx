@@ -20,7 +20,7 @@ export default function Header() {
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-    );
+    };
   return (
     <header
       style={{
