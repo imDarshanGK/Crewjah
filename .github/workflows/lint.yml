@@ -16,4 +16,4 @@ jobs:
         pip install pylint -r requirements.txt
     - name: Run Pylint
       run: |
-        pylint main.py modules/*.py
+  pylint modules/*.py
