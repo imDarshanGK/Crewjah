@@ -1,4 +1,4 @@
-
+"use client";
 import { useState } from "react";
 const languages = ["Python", "JavaScript", "Java", "C++", "TypeScript", "Other"];
 
