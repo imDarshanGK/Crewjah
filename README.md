@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Crewjah/Crewjah/public/crewjah-logo.jpg" alt="Crewjah Banner" width="120" height="120">
+  <img src="backend/public/crewjah-logo.jpg" alt="Crewjah Banner" width="120" height="120">
 </p>
 
 <p align="center">
@@ -46,6 +46,8 @@
 Clone this repository and install dependencies for both frontend and backend:
 
 ```bash
+git clone https://github.com/imDarshanGK/Crewjah.git
+
 # Clone the repo
 git clone https://github.com/imDarshanGK/Crewjah.git
 cd Crewjah
@@ -54,7 +56,7 @@ cd Crewjah
 pip install -r requirements.txt
 
 # Frontend setup
-cd Crewjah
+cd frontend
 npm install
 ```
 
@@ -65,7 +67,7 @@ npm install
 uvicorn api.main:app --reload
 
 # In another terminal (Frontend)
-cd Crewjah
+cd frontend
 npm run dev
 ```
 
@@ -83,13 +85,14 @@ Crewjah/
 │   ├── models.py       # SQLAlchemy models
 │   ├── db.py           # DB session
 │   └── alembic/        # Migrations
-├── Crewjah/            # Next.js frontend
+├── frontend/           # Next.js frontend
 │   ├── app/            # All pages (dashboard, quiz, flashcards, etc.)
 │   ├── components/     # Shared UI components
 │   └── public/         # Static assets
 ├── modules/            # Python modules (summarize, TTS, etc.)
 ├── data/               # User data, questions, progress
 ├── assets/             # Images, banners, logos
+├── backend/            # (if present, backend code)
 ├── tests/              # Tests
 └── README.md
 ```
